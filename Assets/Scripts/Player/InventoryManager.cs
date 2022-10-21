@@ -6,8 +6,16 @@ public class InventoryManager : MonoBehaviour {
     private ThirdPersonController playerController;
     private Rumbler rumbler;
 
+    Transform characterBodySlot;
+    Transform characterLeftHandSlot;
+    Transform characterRightHandSlot;
+
     GameObject bodySlot;
-    string bodySlotItem;
+    GameObject leftHandSlot;
+    GameObject rightHandSlot;
+    string bodySlotName;
+    string leftHandSlotName;
+    string rightHandSlotName;
 
     bool hasPlayedJumpAnimation = false;
     bool hasPlayedDashAnimation = false;
@@ -15,43 +23,64 @@ public class InventoryManager : MonoBehaviour {
     void Awake() {
         playerController = GetComponent<ThirdPersonController>();
         rumbler = GetComponent<Rumbler>();
+
+        List<GameObject> characterSlots = GetGameObjectsByTagName("Character Slot");
+        characterBodySlot = GetTransformFromGameObjects(characterSlots, "Body Slot");
+        characterLeftHandSlot = GetTransformFromGameObjects(characterSlots, "Left Hand Slot");
+        characterRightHandSlot = GetTransformFromGameObjects(characterSlots, "Right Hand Slot");
+    }
+
+    private List<GameObject> GetGameObjectsByTagName(string tag) {
+        List<GameObject> found = new List<GameObject>(GameObject.FindGameObjectsWithTag(tag)).FindAll(g => g.transform.IsChildOf(transform));
+        return found;
+    }
+
+    private Transform GetTransformFromGameObjects(List<GameObject> gameObjects, string name) {
+        return gameObjects.Find(g => g.name == name)?.transform;
     }
 
     public bool HasJetpack() {
-        return bodySlotItem == "Items/Jetpack";
+        return bodySlotName == "Jetpack";
     }
 
     public JetController GetJetpack() {
         return bodySlot?.GetComponent<JetController>();
     }
 
-    Transform GetTransform(string name) {
-        foreach (Transform child in gameObject.GetComponentInChildren<Transform>()) {
-            if (child.name == name) {
-                return child;
-            }
-        }
-        return transform;
-    }
-
-    public void PickUpItem(string slot, string item) {
+    public void PickUpItem(string slot, GameObject item) {
         rumbler.RumbleConstant(1f, 1f, 0.2f);
 
         if (slot == "Body") {
-            if (bodySlotItem == item) {
+            if (bodySlotName == item.name) {
                 if (HasJetpack()) {
                     GetJetpack().PlayJetBeam();
                 }
                 return;
             }
 
-            bodySlotItem = item;
+            bodySlotName = item.name;
             bodySlot = Instantiate(
-                Resources.Load(item) as GameObject,
+                item,
                 new Vector3(0f, -0.1f, -0.25f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
-            bodySlot.transform.SetParent(GetTransform("Body Slot"), false);   
+            bodySlot.transform.SetParent(characterBodySlot, false);
+        } else if (slot == "Left Hand") {
+            leftHandSlotName = item.name;
+            leftHandSlot = Instantiate(
+                item,
+                new Vector3(0f, 0f, 0f),
+                Quaternion.Euler(0f, 0f, 0f)
+            );
+            leftHandSlot.transform.SetParent(characterLeftHandSlot, false);
+        } else if (slot == "Right Hand") {
+            rightHandSlotName = item.name;
+            rightHandSlot = Instantiate(
+                item,
+                new Vector3(0f, 0f, 0f),
+                Quaternion.Euler(0f, 0f, 0f)
+            );
+            rightHandSlot.transform.SetParent(characterRightHandSlot, false);
         }
     }
 

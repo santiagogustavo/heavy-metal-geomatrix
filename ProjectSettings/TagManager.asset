@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Particle
+  - Character Slot
   layers:
   - Default
   - TransparentFX

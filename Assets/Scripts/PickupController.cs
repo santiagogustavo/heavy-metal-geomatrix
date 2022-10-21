@@ -7,7 +7,7 @@ public class PickupController : MonoBehaviour {
 
     public bool pickupOnPress = false;
     public string slot;
-    public string item;
+    public GameObject item;
 
     bool isInside = false;
     GameObject collisionObject;

@@ -121,7 +121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7567696861259484876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.352, z: -2.76}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupOnPress: 0
   slot: Body
-  item: Items/Jetpack
+  item: {fileID: 2461180796443751454, guid: 9175bf8b7143ee041894e675e73d5132, type: 3}
 --- !u!1001 &7567696861510329893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,6 +251,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 557b7dcae9a036f4ca5d8b488883aabf, type: 3}
       propertyPath: m_Name
       value: Outer Halo
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557b7dcae9a036f4ca5d8b488883aabf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 557b7dcae9a036f4ca5d8b488883aabf, type: 3}
@@ -330,6 +334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inner Halo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 557b7dcae9a036f4ca5d8b488883aabf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 557b7dcae9a036f4ca5d8b488883aabf, type: 3}
 --- !u!4 &7966697652447061991 stripped
@@ -388,9 +396,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -222132406829575950, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 75.74998
+      objectReference: {fileID: 0}
+    - target: {fileID: -222132406829575950, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: -222132406829575950, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
       propertyPath: m_Name
       value: Base G
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826227390181973704, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 83.36342
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826227390181973704, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 37.91668
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826227390181973704, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 37.91668
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e2d2a69c8e01414198303817f678a37, type: 3}
@@ -409,7 +441,7 @@ Animator:
   m_GameObject: {fileID: 7333186078632640480}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 408d46a55b7f2b94d86fb7f498720a75, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1448276e13a39a646aaae3689b17f496, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

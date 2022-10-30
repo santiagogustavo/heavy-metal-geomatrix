@@ -181,6 +181,7 @@ MonoBehaviour:
   pickupOnPress: 0
   slot: Body
   item: {fileID: 2461180796443751454, guid: 9175bf8b7143ee041894e675e73d5132, type: 3}
+  pickupEffect: {fileID: 3405643972632283647, guid: 6a3e7a79dc476f245af3cf941e0a06bd, type: 3}
 --- !u!1001 &7567696861510329893
 PrefabInstance:
   m_ObjectHideFlags: 0

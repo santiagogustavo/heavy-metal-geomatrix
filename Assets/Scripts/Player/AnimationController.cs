@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour {
     Animator animator;
+    int activeLayer = 0;
 
     // Start is called before the first frame update
     void Start() {
         animator = GetComponent<Animator>();
     }
 
+    public int GetActiveLayer() {
+        return activeLayer;
+    }
+
+    public void ChangeAnimatorLayer(int layer) {
+        activeLayer = layer;
+
+        for (int i = 0; i < animator.layerCount; i++) {
+            if (i != layer) {
+                animator.SetLayerWeight(i, 0f);
+            } else {
+                animator.SetLayerWeight(i, 1f);
+            }
+        }
+    }
+
     public bool IsCurrentAnimation(string name) {
-        return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+        return animator.GetCurrentAnimatorStateInfo(activeLayer).IsName(name);
     }
 
     public bool IsNextAnimation(string name) {
-        return animator.GetNextAnimatorStateInfo(0).IsName(name);
+        return animator.GetNextAnimatorStateInfo(activeLayer).IsName(name);
     }
 
     public bool IsWalking() {
@@ -40,9 +57,9 @@ public class AnimationController : MonoBehaviour {
         }
 
         if (crossFadeDuration > 0f) {
-            animator.CrossFadeInFixedTime(newState, crossFadeDuration);
+            animator.CrossFadeInFixedTime(newState, crossFadeDuration, activeLayer);
         } else {
-            animator.Play(newState);
+            animator.Play(newState, activeLayer);
         }
     }
 }

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour {
     private ThirdPersonController playerController;
+    private AnimationController animationController;
     private Rumbler rumbler;
 
-    Transform characterBodySlot;
-    Transform characterLeftHandSlot;
-    Transform characterRightHandSlot;
+    Transform bodySlot;
+    Transform leftHandSlot;
+    Transform rightHandSlot;
 
-    GameObject bodySlot;
-    GameObject leftHandSlot;
-    GameObject rightHandSlot;
+    GameObject bodyItem;
+    GameObject leftHandItem;
+    GameObject rightHandItem;
+
     string bodySlotName;
     string leftHandSlotName;
     string rightHandSlotName;
@@ -22,12 +24,13 @@ public class InventoryManager : MonoBehaviour {
 
     void Awake() {
         playerController = GetComponent<ThirdPersonController>();
+        animationController = GetComponentInChildren<AnimationController>();
         rumbler = GetComponent<Rumbler>();
 
         List<GameObject> characterSlots = GetGameObjectsByTagName("Character Slot");
-        characterBodySlot = GetTransformFromGameObjects(characterSlots, "Body Slot");
-        characterLeftHandSlot = GetTransformFromGameObjects(characterSlots, "Left Hand Slot");
-        characterRightHandSlot = GetTransformFromGameObjects(characterSlots, "Right Hand Slot");
+        bodySlot = GetTransformFromGameObjects(characterSlots, "Body Slot");
+        leftHandSlot = GetTransformFromGameObjects(characterSlots, "Left Hand Slot");
+        rightHandSlot = GetTransformFromGameObjects(characterSlots, "Right Hand Slot");
     }
 
     private List<GameObject> GetGameObjectsByTagName(string tag) {
@@ -44,43 +47,56 @@ public class InventoryManager : MonoBehaviour {
     }
 
     public JetController GetJetpack() {
-        return bodySlot?.GetComponent<JetController>();
+        return bodyItem?.GetComponent<JetController>();
     }
 
     public void PickUpItem(string slot, GameObject item) {
         rumbler.RumbleConstant(1f, 1f, 0.2f);
 
         if (slot == "Body") {
-            if (bodySlotName == item.name) {
-                if (HasJetpack()) {
-                    GetJetpack().PlayJetBeam();
-                }
-                return;
-            }
+            Destroy(bodyItem);
 
             bodySlotName = item.name;
-            bodySlot = Instantiate(
+            bodyItem = Instantiate(
                 item,
                 new Vector3(0f, -0.1f, -0.25f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
-            bodySlot.transform.SetParent(characterBodySlot, false);
+            bodyItem.transform.SetParent(bodySlot, false);
         } else if (slot == "Left Hand") {
+            Destroy(leftHandItem);
+
             leftHandSlotName = item.name;
-            leftHandSlot = Instantiate(
+            leftHandItem = Instantiate(
                 item,
                 new Vector3(0f, 0f, 0f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
-            leftHandSlot.transform.SetParent(characterLeftHandSlot, false);
+            leftHandItem.transform.SetParent(leftHandSlot, false);
         } else if (slot == "Right Hand") {
+            Destroy(rightHandItem);
+
             rightHandSlotName = item.name;
-            rightHandSlot = Instantiate(
+            rightHandItem = Instantiate(
                 item,
                 new Vector3(0f, 0f, 0f),
                 Quaternion.Euler(0f, 0f, 0f)
             );
-            rightHandSlot.transform.SetParent(characterRightHandSlot, false);
+            rightHandItem.transform.SetParent(rightHandSlot, false);
+        }
+    }
+
+    private void UpdateAnimatorActiveLayer() {
+        int layer = 0;
+
+        if (rightHandItem && !leftHandItem) {
+            layer = 1;
+        } else if (leftHandItem) {
+            layer = 2;
+        }
+
+        if (animationController.GetActiveLayer() != layer) {
+            animationController.ChangeAnimatorLayer(layer);
         }
     }
 
@@ -116,6 +132,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
     private void Update() {
+        UpdateAnimatorActiveLayer();
         JetController jetpack = GetJetpack();
         UpdateJump(jetpack);
         UpdateDash(jetpack);

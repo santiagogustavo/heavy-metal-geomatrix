@@ -48,6 +48,8 @@ MonoBehaviour:
   - {fileID: 7567696861259484876, guid: e6f622315c372094387711d6db84c26f, type: 3}
   - {fileID: 7567696861259484876, guid: f9e8d989bf7537e48928a01129c12d88, type: 3}
   - {fileID: 7567696861259484876, guid: 452e4dff26f554d43b7f9f75a59d3370, type: 3}
+  - {fileID: 7567696861259484876, guid: 1566b2a57187fba4b918f1e07bd6f2dd, type: 3}
+  - {fileID: 7567696861259484876, guid: 97d1995b23b27e843b4448aba00b1854, type: 3}
   size: {x: 5, y: 0, z: 5}
   minSpawnDelay: 3
   maxSpawnDelay: 5

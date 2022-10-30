@@ -181,6 +181,7 @@ MonoBehaviour:
   pickupOnPress: 1
   slot: Left Hand
   item: {fileID: 3655269530017972751, guid: a9c0289af08235b4ba02b799f3bc6f7f, type: 3}
+  pickupEffect: {fileID: 5083049284477765185, guid: a1f93bdd3eb241442822a57ea100c618, type: 3}
 --- !u!1001 &1318977777656291928
 PrefabInstance:
   m_ObjectHideFlags: 0

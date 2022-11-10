@@ -5,7 +5,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour {
     private ThirdPersonController playerController;
     private AnimationController animationController;
-    private Rumbler rumbler;
 
     Transform bodySlot;
     Transform leftHandSlot;
@@ -25,7 +24,6 @@ public class InventoryManager : MonoBehaviour {
     void Awake() {
         playerController = GetComponent<ThirdPersonController>();
         animationController = GetComponentInChildren<AnimationController>();
-        rumbler = GetComponent<Rumbler>();
 
         List<GameObject> characterSlots = GetGameObjectsByTagName("Character Slot");
         bodySlot = GetTransformFromGameObjects(characterSlots, "Body Slot");
@@ -51,7 +49,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
     public void PickUpItem(string slot, GameObject item) {
-        rumbler.RumbleConstant(1f, 1f, 0.2f);
+        Rumbler.instance.RumbleConstant(1f, 1f, 0.2f);
 
         if (slot == "Body") {
             Destroy(bodyItem);

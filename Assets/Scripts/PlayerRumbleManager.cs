@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerRumbleManager : MonoBehaviour {
     InventoryManager inventory;
     ThirdPersonController controller;
-    Rumbler rumbler;
 
     bool isRumblingJump;
     bool isDashing;
@@ -14,13 +13,12 @@ public class PlayerRumbleManager : MonoBehaviour {
     void Awake() {
         inventory = GetComponent<InventoryManager>();
         controller = GetComponent<ThirdPersonController>();
-        rumbler = GetComponent<Rumbler>();
     }
 
     void Update() {
         if (controller.hasDoubleJumped) {
             if (!isRumblingJump) {
-                rumbler.RumbleConstant(1f, 1f, 0.2f);
+                Rumbler.instance.RumbleConstant(1f, 1f, 0.2f);
                 isRumblingJump = true;
             }
         } else {
@@ -28,7 +26,7 @@ public class PlayerRumbleManager : MonoBehaviour {
         }
 
         if (controller.isDashing && inventory.HasJetpack()) {
-            rumbler.RumblePulse(0.25f, 0.5f, 0.1f, 0.1f);
+            Rumbler.instance.RumblePulse(0.25f, 0.5f, 0.1f, 0.1f);
         }
     }
 }

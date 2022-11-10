@@ -87,7 +87,7 @@ public class PickupController : MonoBehaviour {
         if (isInside) {
             LerpCollisionMaterial();
 
-            if (Input.GetButtonDown("Fire3")) {
+            if (Input.GetButtonDown("Fire2")) {
                 PickUpItemAndDestroy();
             }
         }

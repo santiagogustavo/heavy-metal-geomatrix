@@ -10,6 +10,7 @@ public enum RumblePattern {
 }
 
 public class Rumbler : MonoBehaviour {
+    public static Rumbler instance;
     private RumblePattern activeRumblePattern;
     private float rumbleDuration;
     private float pulseDuration;
@@ -19,6 +20,12 @@ public class Rumbler : MonoBehaviour {
     private float highStep;
     private float rumbleStep;
     private bool isMotorActive = false;
+
+    void Awake() {
+        if (!instance) {
+            instance = this;
+        }
+    }
 
     public void RumbleConstant(float low, float high, float duration) {
         activeRumblePattern = RumblePattern.Constant;

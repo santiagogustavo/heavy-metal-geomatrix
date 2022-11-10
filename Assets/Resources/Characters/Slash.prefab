@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 2206711623078981766}
   - component: {fileID: 1572882354910358018}
   - component: {fileID: 1572882354910358019}
+  - component: {fileID: 332961334235312408}
   m_Layer: 6
   m_Name: Slash
   m_TagString: Untagged
@@ -317,6 +318,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd47af66ed4a4d489d718f9fe15b7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &332961334235312408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572882354910358076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5869223de39e16c48be956b4d5aa15d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  texturesDefault:
+  - {fileID: 2800000, guid: db9a2a00956135249b20d865470b7626, type: 3}
+  - {fileID: 2800000, guid: e76632318dcd19b459316906c0192c0d, type: 3}
+  - {fileID: 2800000, guid: 8bc2a082dd2105549a8499dd7478ca1f, type: 3}
+  - {fileID: 2800000, guid: 990cfb3747ef5ba4dbc206d75eb91178, type: 3}
+  - {fileID: 2800000, guid: a4f30e4cdfb64ce45adbdefa0bac07fc, type: 3}
+  - {fileID: 2800000, guid: 1f31b0b6b52aaeb4db8a54a6840466a6, type: 3}
+  - {fileID: 2800000, guid: 60cbf22805787ad4892df84ea0cba8fe, type: 3}
+  texturesA:
+  - {fileID: 2800000, guid: b2512802a4cc28e4ab01920f21f108c4, type: 3}
+  - {fileID: 2800000, guid: 4f3b9832ae0f2064b8ae27d9ad4d3f94, type: 3}
+  - {fileID: 2800000, guid: cdbb4df9f20b65944b0c231504c83094, type: 3}
+  - {fileID: 2800000, guid: a5c7196ec0142c64084f207593e3ba59, type: 3}
+  - {fileID: 2800000, guid: e78d52898460c32478bfbe4ae6d5a272, type: 3}
+  - {fileID: 2800000, guid: ebb19695e28f6d9479784cbc04508cc0, type: 3}
+  - {fileID: 2800000, guid: 710eb0fd86013df40b3e5c4934ecbd35, type: 3}
+  texturesB:
+  - {fileID: 2800000, guid: 95c9d4db707bcaa418fb677c6680da65, type: 3}
+  - {fileID: 2800000, guid: eed272846d881dc4fa7b7843597a4293, type: 3}
+  - {fileID: 2800000, guid: c7ef713a74220ee4fac7d69b6858bdef, type: 3}
+  - {fileID: 2800000, guid: e0ba6b0092cbf9843a78d2c80002235c, type: 3}
+  - {fileID: 2800000, guid: 857b2ed7bbda6364795326a7dcebc9df, type: 3}
+  - {fileID: 2800000, guid: 04245a848c6fe7b4b9de24c707b20ae7, type: 3}
+  - {fileID: 2800000, guid: bda49c3b087132e4c9903a1eeb944ee9, type: 3}
+  texturesC:
+  - {fileID: 2800000, guid: 8c2cf7555deb95241862d8d8215e738b, type: 3}
+  - {fileID: 2800000, guid: 6145de973483937469db477ee1bbe5a0, type: 3}
+  - {fileID: 2800000, guid: 1570c4ee0bbd97845a4f5aa86b025fa5, type: 3}
+  - {fileID: 2800000, guid: eece021b5a2fa734d918d474bf895689, type: 3}
+  - {fileID: 2800000, guid: 8ebe73feff245614aacdad4fd1fd7b85, type: 3}
+  - {fileID: 2800000, guid: 04bf3f129ad983941b39ed9999cd997b, type: 3}
+  - {fileID: 2800000, guid: 291ff6c9fa3016c4c855e8e874b1a38d, type: 3}
+  activeSkin: 0
 --- !u!1 &2222714697178342797
 GameObject:
   m_ObjectHideFlags: 0

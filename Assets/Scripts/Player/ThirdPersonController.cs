@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThirdPersonController : MonoBehaviour {
-    InputManager input;
     InventoryManager inventory;
-    Rigidbody rigidBody;
     CharacterController controller;
 
     public AnimationController animator;
@@ -29,14 +27,12 @@ public class ThirdPersonController : MonoBehaviour {
     public bool isDashing = false;
 
     void Awake() {
-        input = GetComponent<InputManager>();
         inventory = GetComponent<InventoryManager>();
-        rigidBody = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
     }
 
     void UpdateMovement() {
-        Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
+        Vector3 direction = new Vector3(InputManager.instance.horizontal, 0f, InputManager.instance.vertical).normalized;
 
         bool isWalking = direction.magnitude >= 0.1f;   
 
@@ -74,7 +70,7 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void UpdateDash() {
-        if (input.leftTrigger == 1f) {
+        if (InputManager.instance.leftTrigger == 1f) {
             if (currGroundedState && !animator.IsCurrentAnimation("Idle") && !isDashing) {
                 animator.ChangeAnimationState("Dash");
                 dashParticle.Play();
@@ -98,14 +94,14 @@ public class ThirdPersonController : MonoBehaviour {
         if (currGroundedState) {
             velocity.y = -0.5f;
 
-            if (input.jump) {
+            if (InputManager.instance.jump) {
                 animator.ChangeAnimationState("Jump");
                 dashParticle.Stop();
                 velocity.y = jumpHeight;
                 hasJumped = true;
             }
         } else {
-            if (input.jump && inventory.HasJetpack() && hasJumped && !hasDoubleJumped) {
+            if (InputManager.instance.jump && inventory.HasJetpack() && hasJumped && !hasDoubleJumped) {
                 velocity.y += jumpHeight;
                 hasDoubleJumped = true;
             }

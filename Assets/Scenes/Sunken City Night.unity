@@ -829,7 +829,7 @@ PrefabInstance:
     - target: {fileID: 441280368964582457, guid: 57ee2229b2236e644a3be7306121fd3a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 953d58e7058865d4f8e4e4a2aad091e6, type: 2}
+      objectReference: {fileID: 2100000, guid: 7502389c0f745bd498a0b7c81de95271, type: 2}
     - target: {fileID: 668362100249772111, guid: 57ee2229b2236e644a3be7306121fd3a, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -16264,6 +16264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4413498373018321770, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 61.00003
+      objectReference: {fileID: 0}
     - target: {fileID: 5029967608341105941, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -16311,6 +16315,18 @@ PrefabInstance:
     - target: {fileID: 5029967608341105944, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413263408860651570, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 56.900024
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444694187007165241, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 73.60004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444694187007165241, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 63.200012
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 417782530078025487, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}

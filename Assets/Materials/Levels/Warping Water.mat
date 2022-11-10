@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Distortion Shader Material
+  m_Name: Warping Water
   m_Shader: {fileID: -6465566751694194690, guid: fc10f6e1fe1160d419c37b0c6f0a917a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -28,10 +28,16 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
+    - _Distortion_Intensity: 0.15
+    - _Distortion_Scale: 25
+    - _Distortion_Speed: 0.2
     - _Gradient_Scale: 3
     m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Distortion_Power: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _Distortion_Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Panning: {r: 0.15, g: 0.15, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &561300575612348376
 MonoBehaviour:

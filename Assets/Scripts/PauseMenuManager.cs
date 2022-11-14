@@ -38,6 +38,8 @@ public class PauseMenuManager : MonoBehaviour {
     }
 
     void OnEnable () {
-        buttons[0]?.Select();
+        if (buttons[0]) {
+            buttons[0].Select();
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Particle
   - Character Slot
+  - Lock Target
   layers:
   - Default
   - TransparentFX

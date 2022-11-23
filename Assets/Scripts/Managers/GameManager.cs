@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameState {
+    SelectPlayer,
     Versus,
     Paused,
 }
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public static GameState state;
     public static event Action<GameState> OnGameStateChanged;
+
+    static PlayerMeta player1;
 
     float playerHealth = 0.75f;
 
@@ -33,6 +36,8 @@ public class GameManager : MonoBehaviour {
         state = newState;
 
         switch (newState) {
+            case GameState.SelectPlayer:
+                break;
             case GameState.Versus:
                 break;
             case GameState.Paused:
@@ -40,5 +45,13 @@ public class GameManager : MonoBehaviour {
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void SetPlayer1Meta(PlayerMeta meta) {
+        player1 = meta;
+    }
+
+    public PlayerMeta GetPlayer1Meta() {
+        return player1;
     }
 }

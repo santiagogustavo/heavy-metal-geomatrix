@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour {
     public static InputManager instance;
     public float horizontal;
     public float vertical;
+    public float dPadX;
+    public float dPadY;
     public bool jump;
     public bool fire1;
     public bool fire2;
@@ -43,5 +45,7 @@ public class InputManager : MonoBehaviour {
         pause = Input.GetButtonDown("Pause");
         leftTrigger = Mathf.Max(Input.GetAxis("Left Trigger"), GetMouseLeft());
         rightTrigger = Mathf.Max(Input.GetAxis("Right Trigger"), GetMouseRight());
+        dPadX = Input.GetAxisRaw("DPad X");
+        dPadY = Input.GetAxisRaw("DPad Y");
     }
 }

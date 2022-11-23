@@ -7,6 +7,9 @@ TagManager:
   - Particle
   - Character Slot
   - Lock Target
+  - Select Card
+  - Meta
+  - Player Name
   layers:
   - Default
   - TransparentFX

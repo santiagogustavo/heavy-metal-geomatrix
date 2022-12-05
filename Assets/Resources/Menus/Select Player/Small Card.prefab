@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd5897872002e1344ab586645e21e5cc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd5897872002e1344ab586645e21e5cc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd5897872002e1344ab586645e21e5cc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fd5897872002e1344ab586645e21e5cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff0b0b3049c98b4992fec4e7dbb6fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardImage: {fileID: 0}
 --- !u!4 &5700424941897494831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fd5897872002e1344ab586645e21e5cc, type: 3}

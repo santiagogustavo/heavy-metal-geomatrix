@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 46360ff15cf66f046b0cdff775714aa5, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -418,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0422323
+      value: 0.042232282
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -426,7 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.042232305
+      value: -0.042232286
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695296626682, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16266,8 +16266,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4413498373018321770, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 61.00003
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5029967608341105941, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
       propertyPath: m_Name
@@ -16318,16 +16318,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8413263408860651570, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 56.900024
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8444694187007165241, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 73.60004
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8444694187007165241, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 63.200012
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 417782530078025487, guid: 6ddb9cb4c1cdd5848ad4c8b11b5a4759, type: 3}

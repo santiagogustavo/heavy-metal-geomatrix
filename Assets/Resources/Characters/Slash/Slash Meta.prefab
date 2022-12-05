@@ -56,6 +56,10 @@ PrefabInstance:
       value: Slash Meta
       objectReference: {fileID: 0}
     - target: {fileID: 4001051443323386146, guid: 5f6c0a89e134d17448e21fa2279b36c3, type: 3}
+      propertyPath: hudCard
+      value: 
+      objectReference: {fileID: 2987284747420276363, guid: b1145ee1322bc054b822ef4aafbcb74f, type: 3}
+    - target: {fileID: 4001051443323386146, guid: 5f6c0a89e134d17448e21fa2279b36c3, type: 3}
       propertyPath: versusCard
       value: 
       objectReference: {fileID: 21300000, guid: cb43eb65393ec744b9a0437c8aac3458, type: 3}

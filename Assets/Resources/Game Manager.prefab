@@ -148,6 +148,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1476910240515796603}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CharacterChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587129339335360724, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2599552737451335341, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe8183b5195a874a956901a57cc2650, type: 3}

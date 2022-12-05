@@ -14,4 +14,7 @@ public class PlayerMeta : MonoBehaviour {
 
     [SerializeField]
     public Sprite versusCard;
+
+    [SerializeField]
+    public Sprite hudCard;
 }

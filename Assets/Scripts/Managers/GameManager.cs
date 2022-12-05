@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum GameState {
     SelectPlayer,
+    SelectLevel,
     Versus,
     Paused,
 }
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public static GameState state;
     public static event Action<GameState> OnGameStateChanged;
 
+    static LevelMeta level;
     static PlayerMeta player1;
 
     float playerHealth = 0.75f;
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour {
         switch (newState) {
             case GameState.SelectPlayer:
                 break;
+            case GameState.SelectLevel:
+                break;
             case GameState.Versus:
                 break;
             case GameState.Paused:
@@ -53,5 +57,23 @@ public class GameManager : MonoBehaviour {
 
     public PlayerMeta GetPlayer1Meta() {
         return player1;
+    }
+
+    public void SetLevelMeta(LevelMeta meta) {
+        level = meta;
+    }
+
+    public LevelMeta GetLevelMeta() {
+        return level;
+    }
+
+    public void LockCursor() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void UnlockCursor() {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

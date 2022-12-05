@@ -5,6 +5,7 @@ using UnityEngine;
 public class Billboard : MonoBehaviour {
     private Camera cam;
     public bool useStaticBillboard;
+    public bool alwaysLookAtCamera;
 
     void Start() {
         cam = Camera.main;
@@ -16,6 +17,9 @@ public class Billboard : MonoBehaviour {
         } else {
             transform.rotation = cam.transform.rotation;
         }
-        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        float rotationX = alwaysLookAtCamera ? transform.rotation.eulerAngles.x : 0f;
+        float rotationY = transform.rotation.eulerAngles.y;
+        float rotationZ = alwaysLookAtCamera ? transform.rotation.eulerAngles.z : 0f;
+        transform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
     }
 }

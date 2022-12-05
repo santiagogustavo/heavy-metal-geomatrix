@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useStaticBillboard: 0
+  alwaysLookAtCamera: 1
 --- !u!95 &4485878575736929376
 Animator:
   serializedVersion: 4

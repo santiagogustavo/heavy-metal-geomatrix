@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour {
@@ -10,6 +11,7 @@ public class PauseMenuManager : MonoBehaviour {
         buttons = GetComponentsInChildren<Button>();
         gameObject.SetActive(false);
         GameManager.OnGameStateChanged += ChangedGameState;
+        GameManager.instance.LockCursor();
     }
 
     void OnDestroy() {
@@ -19,12 +21,20 @@ public class PauseMenuManager : MonoBehaviour {
     void PauseGame() {
         gameObject.SetActive(true);
         Time.timeScale = 0f;
+        GameManager.instance.UnlockCursor();
     }
 
     public void ResumeGame() {
         gameObject.SetActive(false);
         Time.timeScale = 1f;
+        GameManager.instance.LockCursor();
     }
+
+    public void CharacterChange() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Select Player");
+    }
+
     public void ExitGame() {
         Application.Quit();
     }

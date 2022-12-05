@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,8 @@ public class SelectPlayerManager : MonoBehaviour {
 
     void Start() {
         selectCards = GameObject.FindGameObjectsWithTag("Select Card");
+        IComparer myComparer = new GameObjectSorter();
+        Array.Sort(selectCards, myComparer);
         InstantiateMarker();
     }
 
@@ -71,8 +74,9 @@ public class SelectPlayerManager : MonoBehaviour {
         InstantiateMarker();
     }
 
-    void RedirectToVersus() {
-        SceneManager.LoadScene("Versus Screen");
+    void RedirectToStageSelection() {
+        SceneManager.LoadScene("Select Stage");
+        Destroy(instance);
     }
 
     public void SelectPlayer() {
@@ -80,13 +84,16 @@ public class SelectPlayerManager : MonoBehaviour {
         PlayerMeta player = selectCards[selectedCard].GetComponentInChildren<PlayerMeta>();
         GameManager.instance.SetPlayer1Meta(player);
         markerInstance.GetComponent<Animator>().Play("Selected", 0);
-        Invoke("RedirectToVersus", 1f);
+        Invoke("RedirectToStageSelection", 1f);
     }
 
     void Update() {
-        if (InputManager.instance.dPadX == 1f && !debounced) {
+        if (selected) {
+            return;
+        }
+        if (InputManager.instance.GetRight() && !debounced) {
             GoToRightCard();
-        } else if (InputManager.instance.dPadX == -1f && !debounced) {
+        } else if (InputManager.instance.GetLeft() && !debounced) {
             GoToLeftCard();
         } else if (InputManager.instance.fire1) {
             SelectPlayer();

@@ -32,6 +32,15 @@ public class InputManager : MonoBehaviour {
     float GetMouseRight() {
         return Input.GetMouseButtonDown(0) ? 1f : 0f;
     }
+
+    public bool GetUpAnalog() {
+        return Mathf.RoundToInt(vertical) == 1f;
+    }
+
+    public bool GetDownAnalog() {
+        return Mathf.RoundToInt(vertical) == -1f;
+    }
+
     public bool GetLeftAnalog() {
         return Mathf.RoundToInt(horizontal) == -1f;
     }
@@ -40,12 +49,28 @@ public class InputManager : MonoBehaviour {
         return Mathf.RoundToInt(horizontal) == 1f;
     }
 
+    public bool GetUpDpad() {
+        return Mathf.RoundToInt(dPadY) == 1f;
+    }
+
+    public bool GetDownDpad() {
+        return Mathf.RoundToInt(dPadY) == -1f;
+    }
+
     public bool GetLeftDpad() {
         return Mathf.RoundToInt(dPadX) == -1f;
     }
 
     public bool GetRightDpad() {
         return Mathf.RoundToInt(dPadX) == 1f;
+    }
+
+    public bool GetUp() {
+        return GetUpAnalog() || GetUpDpad();
+    }
+
+    public bool GetDown() {
+        return GetDownAnalog() || GetDownDpad();
     }
 
     public bool GetLeft() {

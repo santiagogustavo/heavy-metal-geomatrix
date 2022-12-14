@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 
     static LevelMeta level;
     static PlayerMeta player1;
+    static bool isPaused;
 
     float playerHealth = 0.75f;
 
@@ -75,5 +76,13 @@ public class GameManager : MonoBehaviour {
     public void UnlockCursor() {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void SetIsGamePaused(bool paused) {
+        isPaused = paused;
+    }
+
+    public bool IsGamePaused() {
+        return isPaused;
     }
 }

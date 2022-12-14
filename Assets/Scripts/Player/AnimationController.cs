@@ -47,6 +47,10 @@ public class AnimationController : MonoBehaviour {
         return IsCurrentAnimation("Jump") || IsCurrentAnimation("Land") || IsCurrentAnimation("Fall");
     }
 
+    public bool IsPickingUp() {
+        return IsCurrentAnimation("Pickup");
+    }
+
     public void SetIsWalking(bool value) {
         animator.SetBool("Walking", value);
     }
@@ -59,7 +63,10 @@ public class AnimationController : MonoBehaviour {
         if (crossFadeDuration > 0f) {
             animator.CrossFadeInFixedTime(newState, crossFadeDuration, activeLayer);
         } else {
-            animator.Play(newState, activeLayer);
+            int layer = 0;
+            for (layer = 0; layer < animator.layerCount; layer++) {
+                animator.Play(newState, layer);
+            }
         }
     }
 }

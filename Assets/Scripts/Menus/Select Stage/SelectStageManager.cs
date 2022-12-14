@@ -8,6 +8,8 @@ public class SelectStageManager : MonoBehaviour {
     public static SelectStageManager instance;
 
     GameObject[] selectCards;
+    AudioSource cursorSfx;
+    AudioSource selectSfx;
 
     int selectedCard = 0;
     bool debounced = false;
@@ -20,6 +22,8 @@ public class SelectStageManager : MonoBehaviour {
     }
 
     void Start() {
+        cursorSfx = GameObject.Find("SFX Cursor").GetComponent<AudioSource>();
+        selectSfx = GameObject.Find("SFX Select").GetComponent<AudioSource>();
         selectCards = GameObject.FindGameObjectsWithTag("Select Card");
         IComparer myComparer = new GameObjectSorter();
         Array.Sort(selectCards, myComparer);
@@ -35,11 +39,13 @@ public class SelectStageManager : MonoBehaviour {
     }
 
     void RedirectToVersus() {
+        Destroy(GameObject.Find("BGM Loop"));
         SceneManager.LoadScene("Versus Screen");
         Destroy(instance);
     }
 
     public void SelectStage() {
+        selectSfx.Play();
         if (IsCurrentRandom()) {
             selectedCard = UnityEngine.Random.Range(0, selectCards.Length - 1);
             SelectStage();
@@ -52,6 +58,7 @@ public class SelectStageManager : MonoBehaviour {
     }
 
     void GoToRightCard() {
+        cursorSfx.Play();
         if (selectedCard == selectCards.Length - 1) {
             selectedCard = 0;
         } else {
@@ -60,6 +67,7 @@ public class SelectStageManager : MonoBehaviour {
         DebounceUpdate();
     }
     void GoToLeftCard() {
+        cursorSfx.Play();
         if (selectedCard == 0) {
             selectedCard = selectCards.Length - 1;
         } else {

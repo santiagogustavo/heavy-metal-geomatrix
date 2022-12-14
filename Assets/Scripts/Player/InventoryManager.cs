@@ -48,7 +48,10 @@ public class InventoryManager : MonoBehaviour {
         return bodyItem?.GetComponent<JetController>();
     }
 
-    public void PickUpItem(string slot, GameObject item) {
+    public void PickUpItem(string slot, GameObject item, bool playAnimation) {
+        if (playAnimation) {
+            animationController.ChangeAnimationState("Pickup");
+        }
         Rumbler.instance.RumbleConstant(1f, 1f, 0.2f);
 
         if (slot == "Body") {

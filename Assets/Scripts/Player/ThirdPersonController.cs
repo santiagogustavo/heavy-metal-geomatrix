@@ -25,6 +25,7 @@ public class ThirdPersonController : MonoBehaviour {
     public bool hasJumped = false;
     public bool hasDoubleJumped = false;
     public bool isDashing = false;
+    public bool isPickingUp = false;
 
     void Awake() {
         inventory = GetComponent<InventoryManager>();
@@ -59,10 +60,10 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (currGroundedState) {
             if (isWalking) {
-                if (!animator.IsJumpingOrFalling() && !isDashing) {
+                if (!animator.IsJumpingOrFalling() && !animator.IsPickingUp() && !isDashing) {
                     animator.ChangeAnimationState("Walk");
                 }
-            } else if (lastGroundedState && !animator.IsJumpingOrFalling()) {
+            } else if (lastGroundedState && !animator.IsJumpingOrFalling() && !animator.IsPickingUp()) {
                 animator.ChangeAnimationState("Idle", 0.15f);
                 dashParticle.Stop();
             }
@@ -110,17 +111,24 @@ public class ThirdPersonController : MonoBehaviour {
 
     void UpdatePublicVariables() {
         isDashing = animator.IsDashing();
+        isPickingUp = animator.IsPickingUp();
     }
 
     void Update() {
+        if (GameManager.instance.IsGamePaused()) {
+            return;
+        }
+
         currGroundedState = controller.isGrounded;
 
         UpdatePublicVariables();
-        UpdateMovement();
-        UpdateJump();
-        UpdateDash();
+        if (!isPickingUp) {
+            UpdateMovement();
+            UpdateJump();
+            UpdateDash();
+            controller.Move(velocity * Time.deltaTime);
+        }
 
-        controller.Move(velocity * Time.deltaTime);
         lastGroundedState = currGroundedState;
     }
 }

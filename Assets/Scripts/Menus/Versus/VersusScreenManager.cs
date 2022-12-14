@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class VersusScreenManager : MonoBehaviour {
     void Start() {
-        Invoke("StartGame", 3f);
+        Invoke("StartGame", 6f);
     }
 
     void StartGame() {

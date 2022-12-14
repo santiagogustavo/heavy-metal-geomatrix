@@ -13,6 +13,9 @@ public class SelectPlayerManager : MonoBehaviour {
     GameObject[] selectCards;
     GameObject markerInstance;
 
+    AudioSource cursorSfx;
+    AudioSource selectSfx;
+
     int selectedCard = 0;
     bool debounced = false;
     bool selected = false;
@@ -27,6 +30,9 @@ public class SelectPlayerManager : MonoBehaviour {
         selectCards = GameObject.FindGameObjectsWithTag("Select Card");
         IComparer myComparer = new GameObjectSorter();
         Array.Sort(selectCards, myComparer);
+
+        cursorSfx = GameObject.Find("SFX Cursor").GetComponent<AudioSource>();
+        selectSfx = GameObject.Find("SFX Select").GetComponent<AudioSource>();
         InstantiateMarker();
     }
 
@@ -56,6 +62,7 @@ public class SelectPlayerManager : MonoBehaviour {
     }
 
     void GoToRightCard() {
+        cursorSfx.Play();
         if (selectedCard == selectCards.Length - 1) {
             selectedCard = 0;
         } else {
@@ -65,6 +72,7 @@ public class SelectPlayerManager : MonoBehaviour {
         InstantiateMarker();
     }
     void GoToLeftCard() {
+        cursorSfx.Play();
         if (selectedCard == 0) {
             selectedCard = selectCards.Length - 1;
         } else {
@@ -75,11 +83,13 @@ public class SelectPlayerManager : MonoBehaviour {
     }
 
     void RedirectToStageSelection() {
+        DontDestroyOnLoad(GameObject.Find("BGM Loop"));
         SceneManager.LoadScene("Select Stage");
         Destroy(instance);
     }
 
     public void SelectPlayer() {
+        selectSfx.Play();
         selected = true;
         PlayerMeta player = selectCards[selectedCard].GetComponentInChildren<PlayerMeta>();
         GameManager.instance.SetPlayer1Meta(player);

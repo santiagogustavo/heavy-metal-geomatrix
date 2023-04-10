@@ -19,13 +19,14 @@ public class ThirdPersonController : MonoBehaviour {
     float turnSmoothVelocity;
     Vector3 velocity;
 
-    bool currGroundedState = true;
+    public bool currGroundedState = true;
     bool lastGroundedState = true;
 
     public bool hasJumped = false;
     public bool hasDoubleJumped = false;
     public bool isDashing = false;
     public bool isPickingUp = false;
+    public bool isShooting = false;
 
     void Awake() {
         inventory = GetComponent<InventoryManager>();
@@ -60,12 +61,11 @@ public class ThirdPersonController : MonoBehaviour {
 
         if (currGroundedState) {
             if (isWalking) {
-                if (!animator.IsJumpingOrFalling() && !animator.IsPickingUp() && !isDashing) {
+                if (!animator.IsJumpingOrFalling() && !animator.IsPickingUp() && !animator.IsShooting() && !isDashing) {
                     animator.ChangeAnimationState("Walk");
                 }
-            } else if (lastGroundedState && !animator.IsJumpingOrFalling() && !animator.IsPickingUp()) {
+            } else if (lastGroundedState && !animator.IsJumpingOrFalling() && !animator.IsPickingUp() && !animator.IsShooting()) {
                 animator.ChangeAnimationState("Idle", 0.15f);
-                dashParticle.Stop();
             }
         }
     }
@@ -74,30 +74,32 @@ public class ThirdPersonController : MonoBehaviour {
         if (InputManager.instance.leftTrigger == 1f) {
             if (currGroundedState && !animator.IsCurrentAnimation("Idle") && !isDashing) {
                 animator.ChangeAnimationState("Dash");
-                dashParticle.Play();
             }
         }
     }
 
-    void UpdateJump() {
+    void UpdateGravity() {
         velocity.y += Physics.gravity.y * Time.deltaTime;
 
         if (!lastGroundedState) {
             if (currGroundedState && !isDashing) {
-                animator.ChangeAnimationState("Land");
+                if (animator.IsJumpingOrFalling()) {
+                    animator.ChangeAnimationState("Land");
+                }
                 hasJumped = false;
                 hasDoubleJumped = false;
             } else if (!animator.IsCurrentAnimation("Jump") && !isDashing) {
                 animator.ChangeAnimationState("Fall");
             }
         }
-        
+    }
+
+    void UpdateJump() {
         if (currGroundedState) {
             velocity.y = -0.5f;
 
             if (InputManager.instance.jump) {
                 animator.ChangeAnimationState("Jump");
-                dashParticle.Stop();
                 velocity.y = jumpHeight;
                 hasJumped = true;
             }
@@ -114,6 +116,16 @@ public class ThirdPersonController : MonoBehaviour {
         isPickingUp = animator.IsPickingUp();
     }
 
+    void UpdateDashParticle() {
+        if (isDashing) {
+            if (!dashParticle.isPlaying) {
+                dashParticle.Play();
+            }
+        } else {
+            dashParticle.Stop();
+        }
+    }
+
     void Update() {
         if (GameManager.instance.IsGamePaused()) {
             return;
@@ -122,13 +134,16 @@ public class ThirdPersonController : MonoBehaviour {
         currGroundedState = controller.isGrounded;
 
         UpdatePublicVariables();
-        if (!isPickingUp) {
+        UpdateDashParticle();
+        UpdateGravity();
+
+        if (!isPickingUp && !isShooting && GameManager.instance.MatchWasStarted()) {
             UpdateMovement();
-            UpdateJump();
             UpdateDash();
-            controller.Move(velocity * Time.deltaTime);
+            UpdateJump();
         }
 
+        controller.Move(velocity * Time.deltaTime);
         lastGroundedState = currGroundedState;
     }
 }

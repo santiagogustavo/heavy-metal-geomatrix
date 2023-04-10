@@ -16,6 +16,13 @@ public class AnimationController : MonoBehaviour {
     }
 
     public void ChangeAnimatorLayer(int layer) {
+        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(activeLayer);
+        animator.Play("Idle", activeLayer);
+
+        if (currentInfo.IsName("Pickup")) {
+            animator.Play("Pickup", layer);
+        }
+
         activeLayer = layer;
 
         for (int i = 0; i < animator.layerCount; i++) {
@@ -51,22 +58,31 @@ public class AnimationController : MonoBehaviour {
         return IsCurrentAnimation("Pickup");
     }
 
+    public bool IsShooting() {
+        return IsCurrentAnimation("Shoot 1");
+    }
+
+    public bool IsIdling() {
+        return IsCurrentAnimation("Idle");
+    }
+
+    public bool IsIdlingOrWalkingOrDashing() {
+        return IsIdling() || IsWalking() || IsDashing();
+    }
+
     public void SetIsWalking(bool value) {
         animator.SetBool("Walking", value);
     }
 
-    public void ChangeAnimationState(string newState, float crossFadeDuration = 0f) {
-        if (IsCurrentAnimation(newState) || IsNextAnimation(newState)) {
+    public void ChangeAnimationState(string newState, float crossFadeDuration = 0f, bool forcePlay = false) {
+        if (!forcePlay && (IsCurrentAnimation(newState) || IsNextAnimation(newState))) {
             return;
         }
 
         if (crossFadeDuration > 0f) {
             animator.CrossFadeInFixedTime(newState, crossFadeDuration, activeLayer);
         } else {
-            int layer = 0;
-            for (layer = 0; layer < animator.layerCount; layer++) {
-                animator.Play(newState, layer);
-            }
+            animator.Play(newState, activeLayer);
         }
     }
 }

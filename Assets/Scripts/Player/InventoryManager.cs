@@ -20,6 +20,9 @@ public class InventoryManager : MonoBehaviour {
 
     bool hasPlayedJumpAnimation = false;
     bool hasPlayedDashAnimation = false;
+    bool hasPlayedShootAnimation = false;
+
+    int weaponBurstCount = 0;
 
     void Awake() {
         playerController = GetComponent<ThirdPersonController>();
@@ -132,10 +135,45 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    void UnlockShoot() {
+        weaponBurstCount = 0;
+        if (InputManager.instance.rightTrigger == 1f) {
+            Shoot();
+            return;
+        }
+        hasPlayedShootAnimation = false;
+        playerController.isShooting = false;
+        animationController.ChangeAnimationState("Idle", 0.1f);
+    }
+
+    private void Shoot() {
+        weaponBurstCount++;
+        WeaponController weapon = leftHandItem.GetComponent<WeaponController>();
+        hasPlayedShootAnimation = true;
+        playerController.isShooting = true;
+        animationController.ChangeAnimationState("Shoot 1", 0.05f, true);
+        weapon.Shoot();
+
+        if (weaponBurstCount == weapon.burst) {
+            Invoke("UnlockShoot", weapon.repeatRate);
+        } else {
+            Invoke("Shoot", weapon.fireRate);
+        }
+    }
+
     private void Update() {
         UpdateAnimatorActiveLayer();
         JetController jetpack = GetJetpack();
         UpdateJump(jetpack);
         UpdateDash(jetpack);
+
+        if (
+            leftHandSlotName != null
+            && !hasPlayedShootAnimation
+            && animationController.IsIdlingOrWalkingOrDashing()
+            && InputManager.instance.rightTrigger == 1
+        ) {
+            Shoot();
+        }
     }
 }

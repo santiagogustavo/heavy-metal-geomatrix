@@ -32,7 +32,7 @@ public class LockOnController : MonoBehaviour {
     }
 
     public float GetAxisCustom(string axisName) {
-        if (IsLockedOn()) {
+        if (IsLockedOn() || !GameManager.instance.MatchWasStarted()) {
             return 0;
         } else {
             return UnityEngine.Input.GetAxis(axisName);

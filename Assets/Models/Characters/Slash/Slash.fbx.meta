@@ -133,7 +133,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0
+        functionName: PlayDashSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -249,7 +256,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.20338982
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5355932
+        functionName: PlayJumpSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -307,7 +328,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.28020388
+        functionName: PlayLandSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -336,7 +364,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.033898305
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.53220344
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -452,7 +494,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.02711863
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.52881354
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -481,7 +537,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.023728814
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.52881354
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -492,6 +562,42 @@ ModelImporter:
       internalID: -5613104057508390974
       firstFrame: 0
       lastFrame: 4
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0
+        functionName: PlayPickupSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7386fea7ab2283741aa983e6aa109cf1, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Shoot 1 - L
+      takeName: Armature|Shoot 1 - L
+      internalID: 6272741627121367698
+      firstFrame: 0
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

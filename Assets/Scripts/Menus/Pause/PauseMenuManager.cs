@@ -91,17 +91,17 @@ public class PauseMenuManager : MonoBehaviour {
     }
 
     void PauseGame() {
-        GameManager.instance.SetIsGamePaused(true);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         GameManager.instance.UnlockCursor();
+        GameManager.instance.SetIsGamePaused(true);
     }
 
     void ResumeGame() {
-        GameManager.instance.SetIsGamePaused(false);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         GameManager.instance.LockCursor();
+        GameManager.instance.SetIsGamePaused(false);
     }
 
     void CharacterChange() {

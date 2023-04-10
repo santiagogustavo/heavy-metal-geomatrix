@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour {
 
     static LevelMeta level;
     static PlayerMeta player1;
-    static bool isPaused;
+    bool isPaused;
+    bool matchWasStarted;
 
     float playerHealth = 0.75f;
 
@@ -82,7 +83,16 @@ public class GameManager : MonoBehaviour {
         isPaused = paused;
     }
 
+    public void SetMatchWasStarted(bool started) {
+        matchWasStarted = started;
+    }
+
+
     public bool IsGamePaused() {
         return isPaused;
+    }
+
+    public bool MatchWasStarted() {
+        return matchWasStarted;
     }
 }

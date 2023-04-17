@@ -808,11 +808,11 @@ Light:
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 6c150b61fb4164547b1001ac2441027b, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2147483647
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -1654,9 +1654,9 @@ GameObject:
   - component: {fileID: 1717467179}
   - component: {fileID: 1717467181}
   - component: {fileID: 1717467180}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
-  m_TagString: Untagged
+  m_TagString: Particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6777,6 +6777,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clouds Sky
       objectReference: {fileID: 0}
+    - target: {fileID: 569296886058305046, guid: eae57c834e142a442be4d7ff1956660b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 569296886058305046, guid: eae57c834e142a442be4d7ff1956660b, type: 3}
+      propertyPath: m_TagString
+      value: Particle
+      objectReference: {fileID: 0}
     - target: {fileID: 569296886058305047, guid: eae57c834e142a442be4d7ff1956660b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6835,6 +6843,14 @@ PrefabInstance:
     - target: {fileID: 3610631886724498588, guid: cefda3e5b1a06f14d8188ec6d0ee699e, type: 3}
       propertyPath: m_Name
       value: Ground Dust
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610631886724498588, guid: cefda3e5b1a06f14d8188ec6d0ee699e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610631886724498588, guid: cefda3e5b1a06f14d8188ec6d0ee699e, type: 3}
+      propertyPath: m_TagString
+      value: Particle
       objectReference: {fileID: 0}
     - target: {fileID: 3610631886724498593, guid: cefda3e5b1a06f14d8188ec6d0ee699e, type: 3}
       propertyPath: m_RootOrder
@@ -6940,8 +6956,16 @@ PrefabInstance:
       value: Clouds Fog
       objectReference: {fileID: 0}
     - target: {fileID: 5182184987657605499, guid: 13756755dcd8fc04d813c7f137581721, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182184987657605499, guid: 13756755dcd8fc04d813c7f137581721, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182184987657605499, guid: 13756755dcd8fc04d813c7f137581721, type: 3}
+      propertyPath: m_TagString
+      value: Particle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -7192,7 +7216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.042232312
+      value: 0.042232294
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.y
@@ -7200,7 +7224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695097953135, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.042232316
+      value: -0.042232297
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695296626681, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
@@ -7243,12 +7267,24 @@ PrefabInstance:
       value: -4.2300005
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7066367
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.02577719
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7066369
       objectReference: {fileID: 0}
     - target: {fileID: 7547977695427067032, guid: dfd6f64c171582c40aa7fc55f78ca2f8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -7444,6 +7480,14 @@ PrefabInstance:
     - target: {fileID: 7606572045210534653, guid: e173ce5e49189f449ac46ee1212b1dfd, type: 3}
       propertyPath: m_Name
       value: Sandstorm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606572045210534653, guid: e173ce5e49189f449ac46ee1212b1dfd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606572045210534653, guid: e173ce5e49189f449ac46ee1212b1dfd, type: 3}
+      propertyPath: m_TagString
+      value: Particle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

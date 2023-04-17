@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PauseMenuCardController : MonoBehaviour {
     Image image;
+
     void Awake() {
         image = GetComponent<Image>();
     }

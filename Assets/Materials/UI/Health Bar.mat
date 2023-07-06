@@ -22,6 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Health Bar
   m_Shader: {fileID: -6465566751694194690, guid: 79691e0b8e5751e49845f1b729057d2c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -30,6 +32,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -97,7 +100,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Pixelation: 15
+    - _Pixelation: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -112,5 +115,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Noise_Color: {r: 0.71132076, g: 0.8216907, b: 1, a: 0}
     - _Tiling: {r: 3, g: 0.1, b: 0, a: 0}
-    - _Wave_Speed: {r: 1, g: 2, b: 0, a: 0}
+    - _Wave_Speed: {r: -0.5, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []

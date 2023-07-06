@@ -87,7 +87,6 @@ public class GameManager : MonoBehaviour {
         matchWasStarted = started;
     }
 
-
     public bool IsGamePaused() {
         return isPaused;
     }

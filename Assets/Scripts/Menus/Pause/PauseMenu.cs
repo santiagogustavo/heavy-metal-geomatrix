@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour {
     void Update() {
+        if (!GameManager.instance.MatchWasStarted()) {
+            return;
+        }
         if (InputManager.instance.pause) {
             if (GameManager.state == GameState.Paused) {
                 GameManager.instance.UpdateGameState(GameState.Versus);

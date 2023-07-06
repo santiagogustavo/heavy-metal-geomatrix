@@ -12,7 +12,6 @@ public class SelectStageManager : MonoBehaviour {
     AudioSource selectSfx;
 
     int selectedCard = 0;
-    bool debounced = false;
     bool selected = false;
 
     void Awake() {
@@ -27,15 +26,6 @@ public class SelectStageManager : MonoBehaviour {
         selectCards = GameObject.FindGameObjectsWithTag("Select Card");
         IComparer myComparer = new GameObjectSorter();
         Array.Sort(selectCards, myComparer);
-    }
-
-    void ClearDebounce() {
-        debounced = false;
-    }
-
-    void DebounceUpdate() {
-        debounced = true;
-        Invoke("ClearDebounce", 0.2f);
     }
 
     void RedirectToVersus() {
@@ -64,7 +54,6 @@ public class SelectStageManager : MonoBehaviour {
         } else {
             selectedCard++;
         }
-        DebounceUpdate();
     }
     void GoToLeftCard() {
         cursorSfx.Play();
@@ -73,16 +62,15 @@ public class SelectStageManager : MonoBehaviour {
         } else {
             selectedCard--;
         }
-        DebounceUpdate();
     }
 
     void Update() {
         if (selected) {
             return;
         }
-        if (InputManager.instance.GetRight() && !debounced) {
+        if (InputManager.instance.GetRightOneShot()) {
             GoToRightCard();
-        } else if (InputManager.instance.GetLeft() && !debounced) {
+        } else if (InputManager.instance.GetLeftOneShot()) {
             GoToLeftCard();
         } else if (InputManager.instance.fire1) {
             SelectStage();

@@ -7,21 +7,17 @@ using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour {
     public static PauseMenuManager instance;
-    GameObject pauseMenu;
-    GameObject[] options;
-
-    float inputTime;
+    public GameObject pauseMenu;
+    public GameObject optionsMenu;
+    public GameObject[] options;
 
     int selectedOption = 0;
+    bool isOptionsOpen = false;
 
     void Awake() {
         if (!instance) {
             instance = this;
         }
-        pauseMenu = GameObject.Find("Pause Menu");
-        options = GameObject.FindGameObjectsWithTag("Select Card");
-        IComparer myComparer = new GameObjectSorter();
-        Array.Sort(options, myComparer);
 
         pauseMenu.SetActive(false);
         GameManager.OnGameStateChanged += ChangedGameState;
@@ -37,27 +33,47 @@ public class PauseMenuManager : MonoBehaviour {
     }
 
     void Update() {
-        inputTime += Time.fixedDeltaTime;
+        optionsMenu.SetActive(isOptionsOpen);
 
-        if (!GameManager.instance.IsGamePaused() || inputTime <= 0.75f) {
+        if (!GameManager.instance.MatchWasStarted()) {
             return;
         }
 
-        if (InputManager.instance.GetDown()) {
-            SelectDown();
-        } else if (InputManager.instance.GetUp()) {
-            SelectUp();
-        } else if (InputManager.instance.fire1) {
+        if (InputManager.instance.pause) {
+            selectedOption = 0;
+            isOptionsOpen = false;
+
+            if (GameManager.state == GameState.Paused) {
+                GameManager.instance.UpdateGameState(GameState.Versus);
+            } else {
+                GameManager.instance.UpdateGameState(GameState.Paused);
+            }
+        }
+
+        if (InputManager.instance.jump) {
+            if (isOptionsOpen) {
+                isOptionsOpen = false;
+            } else {
+                ResumeGame();
+            }
+        }
+
+        if (!GameManager.instance.IsGamePaused() || isOptionsOpen) {
+            return;
+        }
+
+        if (InputManager.instance.fire1) {
             SelectCurrent();
+        }
+
+        if (InputManager.instance.GetDownOneShot()) {
+            SelectDown();
+        } else if (InputManager.instance.GetUpOneShot()) {
+            SelectUp();
         }
     }
 
-    void DebounceInput() {
-        inputTime = 0f;
-    }
-
     void SelectDown() {
-        DebounceInput();
         if (selectedOption == options.Length - 1) {
             selectedOption = 0;
         } else {
@@ -66,7 +82,6 @@ public class PauseMenuManager : MonoBehaviour {
     }
 
     void SelectUp() {
-        DebounceInput();
         if (selectedOption == 0) {
             selectedOption = options.Length - 1;
         } else {
@@ -83,6 +98,9 @@ public class PauseMenuManager : MonoBehaviour {
                 CharacterChange();
                 break;
             case 2:
+                OpenOptionsMenu();
+                break;
+            case 3:
                 ExitGame();
                 break;
             default:
@@ -107,6 +125,10 @@ public class PauseMenuManager : MonoBehaviour {
     void CharacterChange() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Select Player");
+    }
+
+    void OpenOptionsMenu() {
+        isOptionsOpen = true;
     }
 
     void ExitGame() {

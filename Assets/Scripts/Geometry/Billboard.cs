@@ -8,10 +8,18 @@ public class Billboard : MonoBehaviour {
     public bool alwaysLookAtCamera;
 
     void Start() {
-        cam = Camera.main;
+        if (Camera.main) {
+            cam = Camera.main;
+        }
     }
 
     void LateUpdate() {
+        if (Camera.main) {
+            cam = Camera.main;
+        }
+        if (!cam) {
+            return;
+        }
         if (!useStaticBillboard) {
             transform.LookAt(cam.transform);
         } else {

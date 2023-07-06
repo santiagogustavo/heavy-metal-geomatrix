@@ -26,11 +26,15 @@ public class ThirdPersonController : MonoBehaviour {
     public bool hasDoubleJumped = false;
     public bool isDashing = false;
     public bool isPickingUp = false;
-    public bool isShooting = false;
 
     void Awake() {
         inventory = GetComponent<InventoryManager>();
         controller = GetComponent<CharacterController>();
+    }
+
+    public void PushForward(float magnitude) {
+        Vector3 moveDirection = controller.transform.rotation * Vector3.forward;
+        controller.Move(moveDirection * speed * magnitude * Time.deltaTime);
     }
 
     void UpdateMovement() {
@@ -137,7 +141,7 @@ public class ThirdPersonController : MonoBehaviour {
         UpdateDashParticle();
         UpdateGravity();
 
-        if (!isPickingUp && !isShooting && GameManager.instance.MatchWasStarted()) {
+        if (!isPickingUp && !animator.IsShooting() && GameManager.instance.MatchWasStarted()) {
             UpdateMovement();
             UpdateDash();
             UpdateJump();

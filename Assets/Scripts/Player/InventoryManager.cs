@@ -51,14 +51,23 @@ public class InventoryManager : MonoBehaviour {
         return bodyItem?.GetComponent<JetController>();
     }
 
+    public SwordController GetSword() {
+        return rightHandItem?.GetComponent<SwordController>();
+    }
+
+    private void ResetVariables() {
+        hasPlayedDashAnimation = false;
+    }
+
     public void PickUpItem(string slot, GameObject item, bool playAnimation) {
         if (playAnimation) {
             animationController.ChangeAnimationState("Pickup");
         }
         Rumbler.instance.RumbleConstant(1f, 1f, 0.2f);
-
+        
         if (slot == "Body") {
             Destroy(bodyItem);
+            ResetVariables();
 
             bodySlotName = item.name;
             bodyItem = Instantiate(
@@ -118,6 +127,17 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    private void UpdateSwordTrail(SwordController sword) {
+        if (!sword) {
+            return;
+        }
+        if (animationController.IsAttacking()) {
+            sword.SetTrailActive(true);
+        } else {
+            sword.SetTrailActive(false);
+        }
+    }
+
     private void UpdateDash(JetController jetpack) {
         if (!jetpack) {
             return;
@@ -142,15 +162,24 @@ public class InventoryManager : MonoBehaviour {
             return;
         }
         hasPlayedShootAnimation = false;
-        playerController.isShooting = false;
         animationController.ChangeAnimationState("Idle", 0.1f);
     }
+
+    private void Sword() {
+        if (animationController.IsCurrentAnimation("Sword 1")) {
+            //playerController.PushForward(10f);
+            animationController.ChangeAnimationState("Sword 2", 0.05f);
+        } else if (!animationController.IsAttacking()) {
+            //playerController.PushForward(10f);
+            animationController.ChangeAnimationState("Sword 1", 0, true);
+        }
+    }
+
 
     private void Shoot() {
         weaponBurstCount++;
         WeaponController weapon = leftHandItem.GetComponent<WeaponController>();
         hasPlayedShootAnimation = true;
-        playerController.isShooting = true;
         animationController.ChangeAnimationState("Shoot 1", 0.05f, true);
         weapon.Shoot();
 
@@ -167,13 +196,30 @@ public class InventoryManager : MonoBehaviour {
         UpdateJump(jetpack);
         UpdateDash(jetpack);
 
+        SwordController sword = GetSword();
+        UpdateSwordTrail(sword);
+
+        if (!animationController.IsAttacking()) {
+            animationController.SetCombo(false);
+        }
+
+        if (animationController.IsPickingUp()) {
+            return;
+        }
+
         if (
             leftHandSlotName != null
             && !hasPlayedShootAnimation
-            && animationController.IsIdlingOrWalkingOrDashing()
             && InputManager.instance.rightTrigger == 1
         ) {
             Shoot();
+        }
+
+        if (
+            rightHandSlotName != null
+            && InputManager.instance.fire2
+        ) {
+            Sword();
         }
     }
 }

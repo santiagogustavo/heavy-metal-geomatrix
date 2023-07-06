@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 5a480546
+  m_Shader: {fileID: -6465566751694194690, guid: fc10f6e1fe1160d419c37b0c6f0a917a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Color_Albedo:
+        m_Texture: {fileID: 2800000, guid: aff39fc1bb865014d8f4ce82761fa14a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_Map:
+        m_Texture: {fileID: 2800000, guid: bb8fd4929a75b454db7339973f23ef45, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 2800000, guid: f391369f17e9b6948b8f66045f26078b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: f38388b7685e61a4783da0794179bdab, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_fa9301f30df344e18d8733b14dc53cb6_Out_0:
+        m_Texture: {fileID: 2800000, guid: f38388b7685e61a4783da0794179bdab, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BUILTIN_QueueControl: 0
+    - _BUILTIN_QueueOffset: 0
+    - _Distortion_Intensity: 0.15
+    - _Distortion_Scale: 25
+    - _Distortion_Speed: 0.1
+    - _Fresnel_Intensity: 1
+    - _Gradient_Scale: 3
+    - _Metallic: 1
+    - _Occlusion_Intensity: 1
+    - _Occlusion_Strength: 2
+    - _Reflection_Intensity: 0.2
+    - _Smoothness: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Distortion_Power: {r: 0.01, g: 0.01, b: 0, a: 0}
+    - _Distortion_Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Panning: {r: 0, g: -0.1, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &561300575612348376
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0

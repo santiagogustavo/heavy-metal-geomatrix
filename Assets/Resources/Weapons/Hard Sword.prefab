@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1979963976165657647}
-  m_Layer: 0
+  - component: {fileID: 2267572881766536611}
+  - component: {fileID: 424252584758012990}
+  - component: {fileID: 7584284552378330138}
+  m_Layer: 10
   m_Name: Hard Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,16 +36,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2267572881766536611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076661822251983820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826b9b3f8b991e142bc9b174ea3fbf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparks: {fileID: 8848707942475713864, guid: ca95879919f6b464e9da20cc3ab5c017, type: 3}
+  trail: {fileID: 8316471101310751037}
+  swordHitSfx: {fileID: 6563053162874078878, guid: df7659b856f19dd4893c7d680f69366d, type: 3}
+--- !u!65 &424252584758012990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076661822251983820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.058227777, y: 1.1745194, z: 0.1428814}
+  m_Center: {x: 0.000000029802322, y: 0.7327443, z: 0.000000029802322}
+--- !u!54 &7584284552378330138
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076661822251983820}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &2306974525520115274
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1979963976165657647}
     m_Modifications:
     - target: {fileID: 4772028256068666798, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: m_Name
       value: Sword Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772028256068666798, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7033855525372784367, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: m_RootOrder
@@ -89,10 +145,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
 --- !u!4 &4726883290429200549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7033855525372784367, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+  m_PrefabInstance: {fileID: 2306974525520115274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8316471101310751037 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
   m_PrefabInstance: {fileID: 2306974525520115274}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2481513283837730601
@@ -100,6 +162,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1979963976165657647}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
@@ -146,11 +209,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -935756971221510612, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
       propertyPath: m_Name
       value: Hard Sword
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563722017127951184, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 60ca7af16fd42e140a433ef7ef924cd5, type: 3}
 --- !u!4 &2736678198299523266 stripped
 Transform:

@@ -48,3 +48,4 @@ MonoBehaviour:
   selectCardBig: {fileID: 1741278538, guid: b729df53f181c614090b30a399c3afa6, type: 3}
   selectCardSmall: {fileID: -1933136997, guid: 644084c6cc779504d9c3cafab55d329a, type: 3}
   versusCard: {fileID: 125627721, guid: 05721a036e03ec34c87c447ed0a43504, type: 3}
+  bgm: {fileID: 7565810513130184320, guid: 4ca9a1ea2af1de94092c3fe8dbe9c68d, type: 3}

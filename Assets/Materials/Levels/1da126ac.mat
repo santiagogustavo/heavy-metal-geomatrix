@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: 1da126ac
   m_Shader: {fileID: -6465566751694194690, guid: fc10f6e1fe1160d419c37b0c6f0a917a, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -17,11 +19,16 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Color_Albedo:
         m_Texture: {fileID: 2800000, guid: f38388b7685e61a4783da0794179bdab, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_Map:
+        m_Texture: {fileID: 2800000, guid: 860054cb9427c1a42931d0de0af4efae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Occlusion:
@@ -43,10 +50,13 @@ Material:
     - _Distortion_Intensity: 0.15
     - _Distortion_Scale: 25
     - _Distortion_Speed: 0.2
+    - _Fresnel_Intensity: 1
     - _Gradient_Scale: 3
+    - _Metallic: 1
     - _Occlusion_Intensity: 1
     - _Occlusion_Strength: 2
-    - _Smoothness: 0.5
+    - _Reflection_Intensity: 0.2
+    - _Smoothness: 0.6
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Distortion_Power: {r: 0.01, g: 0.01, b: 0, a: 0}

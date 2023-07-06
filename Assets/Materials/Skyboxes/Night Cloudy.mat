@@ -8,27 +8,69 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Night Cloudy
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords:
+  m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _MAPPING_LATITUDE_LONGITUDE_LAYOUT
   - _SUNDISK_HIGH_QUALITY
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _BackTex:
+        m_Texture: {fileID: 2800000, guid: f272803645eddcc4f89787656eeeae81, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DownTex:
+        m_Texture: {fileID: 2800000, guid: 1bf8f832ae8de464db74e7bdb1b1a6e8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FrontTex:
+        m_Texture: {fileID: 2800000, guid: c44cfc96fdf173b44ba92de64a634f1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LeftTex:
+        m_Texture: {fileID: 2800000, guid: 69292734b638f414ea3d00cd52968bba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: ecb93103e325753448a11f4593630516, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RightTex:
+        m_Texture: {fileID: 2800000, guid: e692b6f8a401bab43876479522f96819, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Tex:
+        m_Texture: {fileID: 8900000, guid: ecb93103e325753448a11f4593630516, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UpTex:
+        m_Texture: {fileID: 2800000, guid: 18a721652a72cf14baa06057e7f75cde, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AtmosphereThickness: 0.25
     - _Exposure: 0.29
+    - _ImageType: 0
+    - _Layout: 0
+    - _Mapping: 1
+    - _MirrorOnBack: 0
+    - _Rotation: 230
     - _SunDisk: 2
     - _SunSize: 0.04
     - _SunSizeConvergence: 5
     m_Colors:
     - _GroundColor: {r: 0.42745098, g: 0.6431373, b: 0.578477, a: 1}
     - _SkyTint: {r: 0.63599145, g: 0.660634, b: 0.8490566, a: 1}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

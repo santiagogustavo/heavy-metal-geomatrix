@@ -8,6 +8,12 @@ public class InputManager : MonoBehaviour {
     public float vertical;
     public float dPadX;
     public float dPadY;
+
+    public bool horizontalInUse;
+    public bool verticalInUse;
+    public bool dPadXInUse;
+    public bool dPadYInUse;
+
     public bool jump;
     public bool fire1;
     public bool fire2;
@@ -34,19 +40,19 @@ public class InputManager : MonoBehaviour {
     }
 
     public bool GetUpAnalog() {
-        return Mathf.RoundToInt(vertical) == 1f;
+        return vertical > 0f;
     }
 
     public bool GetDownAnalog() {
-        return Mathf.RoundToInt(vertical) == -1f;
+        return vertical < 0f;
     }
 
     public bool GetLeftAnalog() {
-        return Mathf.RoundToInt(horizontal) == -1f;
+        return horizontal < 0f;
     }
 
     public bool GetRightAnalog() {
-        return Mathf.RoundToInt(horizontal) == 1f;
+        return horizontal > 0f;
     }
 
     public bool GetUpDpad() {
@@ -80,8 +86,60 @@ public class InputManager : MonoBehaviour {
     public bool GetRight() {
         return GetRightAnalog() || GetRightDpad();
     }
+    public bool GetUpOneShot() {
+        return (GetUpAnalog() && !verticalInUse) || (GetUpDpad() && !dPadYInUse);
+    }
+
+    public bool GetDownOneShot() {
+        return (GetDownAnalog() && !verticalInUse) || (GetDownDpad() && !dPadYInUse);
+    }
+
+    public bool GetLeftOneShot() {
+        return (GetLeftAnalog() && !horizontalInUse) || (GetLeftDpad() && !dPadXInUse);
+    }
+
+    public bool GetRightOneShot() {
+        return (GetRightAnalog() && !horizontalInUse) || (GetRightDpad() && !dPadXInUse);
+    }
+
+    public void UpdateHorizontalInUse() {
+        if (horizontal != 0f) {
+            horizontalInUse = true;
+        } else {
+            horizontalInUse = false;
+        }
+    }
+
+    public void UpdateVerticalInUse() {
+        if (vertical != 0f) {
+            verticalInUse = true;
+        } else {
+            verticalInUse = false;
+        }
+    }
+
+    public void UpdateDPadXInUse() {
+        if (dPadX != 0f) {
+            dPadXInUse = true;
+        } else {
+            dPadXInUse = false;
+        }
+    }
+
+    public void UpdateDPadYInUse() {
+        if (dPadY != 0f) {
+            dPadYInUse = true;
+        } else {
+            dPadYInUse = false;
+        }
+    }
 
     void Update() {
+        UpdateHorizontalInUse();
+        UpdateVerticalInUse();
+        UpdateDPadXInUse();
+        UpdateDPadYInUse();
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         jump = Input.GetButtonDown("Jump");

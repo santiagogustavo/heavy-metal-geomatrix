@@ -17,7 +17,6 @@ public class SelectPlayerManager : MonoBehaviour {
     AudioSource selectSfx;
 
     int selectedCard = 0;
-    bool debounced = false;
     bool selected = false;
 
     void Awake() {
@@ -34,15 +33,6 @@ public class SelectPlayerManager : MonoBehaviour {
         cursorSfx = GameObject.Find("SFX Cursor").GetComponent<AudioSource>();
         selectSfx = GameObject.Find("SFX Select").GetComponent<AudioSource>();
         InstantiateMarker();
-    }
-
-    void ClearDebounce() {
-        debounced = false;
-    }
-
-    void DebounceUpdate() {
-        debounced = true;
-        Invoke("ClearDebounce", 0.2f);
     }
 
     void InstantiateMarker() {
@@ -68,7 +58,6 @@ public class SelectPlayerManager : MonoBehaviour {
         } else {
             selectedCard++;
         }
-        DebounceUpdate();
         InstantiateMarker();
     }
     void GoToLeftCard() {
@@ -78,7 +67,6 @@ public class SelectPlayerManager : MonoBehaviour {
         } else {
             selectedCard--;
         }
-        DebounceUpdate();
         InstantiateMarker();
     }
 
@@ -101,9 +89,9 @@ public class SelectPlayerManager : MonoBehaviour {
         if (selected) {
             return;
         }
-        if (InputManager.instance.GetRight() && !debounced) {
+        if (InputManager.instance.GetRightOneShot()) {
             GoToRightCard();
-        } else if (InputManager.instance.GetLeft() && !debounced) {
+        } else if (InputManager.instance.GetLeftOneShot()) {
             GoToLeftCard();
         } else if (InputManager.instance.fire1) {
             SelectPlayer();

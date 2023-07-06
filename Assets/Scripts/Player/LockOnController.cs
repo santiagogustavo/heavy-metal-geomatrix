@@ -91,6 +91,9 @@ public class LockOnController : MonoBehaviour {
     }
 
     void Update() {
+        if (GameManager.instance.IsGamePaused()) {
+            return;
+        }
         if (InputManager.instance.fire3) {
             NextLockTarget();
         }

@@ -17,7 +17,6 @@ public class MainMenuManager : MonoBehaviour {
     GameObject[] selectCards;
 
     int selectedCard = 0;
-    bool inputLocked = true;
     bool selected = false;
     bool isMenuOpen = false;
 
@@ -38,16 +37,6 @@ public class MainMenuManager : MonoBehaviour {
         pressStartAnchor = GameObject.Find("Press Start Anchor");
         menuList = GameObject.Find("Menu List");
         menuList.SetActive(false);
-        DebounceInput(1f);
-    }
-
-    void UnlockInput() {
-        inputLocked = false;
-    }
-
-    void DebounceInput(float timeout) {
-        inputLocked = true;
-        Invoke("UnlockInput", timeout);
     }
 
     void RedirectToSelectPlayer() {
@@ -56,7 +45,6 @@ public class MainMenuManager : MonoBehaviour {
 
     public void StartArcadeGame() {
         select1Sfx.Play();
-        inputLocked = true;
         fadeAnimator.Play("Fade Out");
         Invoke("RedirectToSelectPlayer", 1f);
     }
@@ -67,14 +55,12 @@ public class MainMenuManager : MonoBehaviour {
 
     void PressedStartButton() {
         isMenuOpen = true;
-        DebounceInput(0.2f);
         pressStartAnchor.SetActive(false);
         menuList.SetActive(true);
     }
 
     void SelectDown() {
         cursorSfx.Play();
-        DebounceInput(0.2f);
         if (selectedCard == selectCards.Length - 1) {
             selectedCard = 0;
         } else {
@@ -84,7 +70,6 @@ public class MainMenuManager : MonoBehaviour {
 
     void SelectUp() {
         cursorSfx.Play();
-        DebounceInput(0.2f);
         if (selectedCard == 0) {
             selectedCard = selectCards.Length - 1;
         } else {
@@ -107,22 +92,21 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     void Update() {
-        if (inputLocked) {
-            return;
-        }
-        if (InputManager.instance.pause) {
+        if (InputManager.instance.pause && !isMenuOpen) {
             PressedStartButton();
         }
-        if (!isMenuOpen) {
+
+        if (!isMenuOpen || selected) {
             return;
         }
 
-        if (InputManager.instance.GetDown()) {
-            SelectDown();
-        } else if (InputManager.instance.GetUp()) {
-            SelectUp();
-        } else if (InputManager.instance.fire1) {
+        if (InputManager.instance.fire1) {
             SelectCurrent();
+        }
+        if (InputManager.instance.GetDownOneShot()) {
+            SelectDown();
+        } else if (InputManager.instance.GetUpOneShot()) {
+            SelectUp();
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5093022847986795019}
   - component: {fileID: 292774271069225547}
   - component: {fileID: 1844824565449656967}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4165133340732132766}
   - component: {fileID: 7967966183956592735}
   - component: {fileID: 6892789509977767581}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 1160394299358022281}
   - component: {fileID: 2735474475722597973}
   - component: {fileID: 2714183093996071642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,6 +767,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 1
@@ -4151,6 +4152,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -4987,8 +4989,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1979963976165657647}
-  - component: {fileID: 3977675313100044435}
-  m_Layer: 0
+  - component: {fileID: 7579633737764149920}
+  - component: {fileID: 4920641849043677583}
+  - component: {fileID: 7804451846508615992}
+  m_Layer: 10
   m_Name: Ray Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,26 +5018,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &3977675313100044435
-Animator:
-  serializedVersion: 4
+--- !u!114 &7579633737764149920
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076661822251983820}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 255b0ee236415c54da7d89ec71792f44, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826b9b3f8b991e142bc9b174ea3fbf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparks: {fileID: 8848707942475713864, guid: 2b2312ee0dfbedf40bb95200f17d1062, type: 3}
+  trail: {fileID: 8316471101310751037}
+  swordHitSfx: {fileID: 6563053162874078878, guid: e39d52c09ac80154b996a885c17a9d01, type: 3}
+--- !u!54 &4920641849043677583
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076661822251983820}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &7804451846508615992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076661822251983820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07621792, y: 1.4072421, z: 0.060011238}
+  m_Center: {x: -0.000000014901161, y: 1.0756499, z: 0.10129191}
 --- !u!1 &4244483141395507649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,7 +5073,7 @@ GameObject:
   - component: {fileID: 5648941941727204658}
   - component: {fileID: 4640128146861539163}
   - component: {fileID: 8641559489328462424}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blade Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5635,6 +5663,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 1
@@ -9019,6 +9048,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -9855,7 +9885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5062886490867984357}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Laser Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9884,6 +9914,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1979963976165657647}
     m_Modifications:
     - target: {fileID: 4772028256068666798, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
@@ -9893,6 +9924,10 @@ PrefabInstance:
     - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6476574382772134126, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -9943,9 +9978,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
 --- !u!4 &4726883290429200549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7033855525372784367, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+  m_PrefabInstance: {fileID: 2306974525520115274}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8316471101310751037 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
   m_PrefabInstance: {fileID: 2306974525520115274}
   m_PrefabAsset: {fileID: 0}

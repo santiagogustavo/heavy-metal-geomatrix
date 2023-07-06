@@ -59,7 +59,11 @@ public class AnimationController : MonoBehaviour {
     }
 
     public bool IsShooting() {
-        return IsCurrentAnimation("Shoot 1");
+        return IsCurrentAnimation("Shoot 1") || IsAttacking();
+    }
+
+    public bool IsAttacking() {
+        return IsCurrentAnimation("Sword 1") || IsCurrentAnimation("Sword 2");
     }
 
     public bool IsIdling() {
@@ -72,6 +76,10 @@ public class AnimationController : MonoBehaviour {
 
     public void SetIsWalking(bool value) {
         animator.SetBool("Walking", value);
+    }
+
+    public void SetCombo(bool value) {
+        animator.SetBool("Combo", value);
     }
 
     public void ChangeAnimationState(string newState, float crossFadeDuration = 0f, bool forcePlay = false) {

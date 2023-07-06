@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4640728651565731234}
   - component: {fileID: 5935465017314915517}
+  - component: {fileID: 7089760472741859372}
   - component: {fileID: 5940323587049888971}
   - component: {fileID: 7934099864246203008}
-  - component: {fileID: 1065936697226359864}
+  - component: {fileID: 705584903040867074}
+  - component: {fileID: 7989408772169103371}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -47,6 +49,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb7c215e50c3384583c360489c72a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7089760472741859372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765323365584897935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025eb4d9c0dfe0040b29ce681bf2dc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicVolume: 0
+  sfxVolume: 10
 --- !u!114 &5940323587049888971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +79,10 @@ MonoBehaviour:
   vertical: 0
   dPadX: 0
   dPadY: 0
+  horizontalInUse: 0
+  verticalInUse: 0
+  dPadXInUse: 0
+  dPadYInUse: 0
   jump: 0
   fire1: 0
   fire2: 0
@@ -84,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99e1a46e8a0aa64d9b5bcd51c284bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1065936697226359864
+--- !u!114 &705584903040867074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,6 +113,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3765323365584897935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba07939282c2f046840ae37c9ee0a4d, type: 3}
+  m_Script: {fileID: 11500000, guid: bb09e34ad293e6142881d1ea45cfcc0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
+--- !u!114 &7989408772169103371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765323365584897935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b821cdcc1381045aa724b316ebdf02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
+  absoluteMusicVolume: 0
+  absoluteSfxVolume: 0

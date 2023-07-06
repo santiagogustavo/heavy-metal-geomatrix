@@ -1011,7 +1011,7 @@ AudioSource:
   m_GameObject: {fileID: 612890044}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7091924535558133206, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
+  OutputAudioMixerGroup: {fileID: -1760343571648923837, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
   m_audioClip: {fileID: 8300000, guid: 73ef7ce28416c694da529123dbb70599, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3167,7 +3167,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 46.08729, y: -27.40795, z: 46.12812, w: -26.647787}
+  m_margin: {x: 46.08729, y: -27.40795, z: 51.131924, w: -26.647787}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

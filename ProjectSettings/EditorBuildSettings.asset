@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Red Hot Shrine Day.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Ocean Castle Twilight.unity
+    guid: db068f8245f75eb419d84eff02ee5bf4
+  - enabled: 1
+    path: Assets/Scenes/Pitch Dark Stadium.unity
+    guid: 1952dc76850a86540bc2a3bb7d28b001
   m_configObjects: {}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4073203833279052710}
   - component: {fileID: 6777383941219785865}
   m_Layer: 0
-  m_Name: Sword Hit
+  m_Name: Sword Player Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,10 +42,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6430277275040391712, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c536d669955b9d146a41c26d8357385b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7ba58107c64814a4087b60ac0c37ed19, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
-  m_Pitch: 0.64
+  m_Volume: 0.45
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0

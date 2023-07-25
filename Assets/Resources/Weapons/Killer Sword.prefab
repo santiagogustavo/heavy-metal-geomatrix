@@ -49,8 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparks: {fileID: 8848707942475713864, guid: ca95879919f6b464e9da20cc3ab5c017, type: 3}
+  hit: {fileID: 8848707942475713864, guid: b7c239ffc4ebeea48ad11b3de21d24d5, type: 3}
   trail: {fileID: 8316471101310751037}
-  swordHitSfx: {fileID: 6563053162874078878, guid: df7659b856f19dd4893c7d680f69366d, type: 3}
+  levelHitSfx: {fileID: 6563053162874078878, guid: df7659b856f19dd4893c7d680f69366d, type: 3}
+  playerHitSfx: {fileID: 6563053162874078878, guid: 00e121ee9b7702b4ebc2f4b91f72adc6, type: 3}
+  damageApplied: 10
+  isPlaying: 0
 --- !u!54 &5305827140256849937
 Rigidbody:
   m_ObjectHideFlags: 0

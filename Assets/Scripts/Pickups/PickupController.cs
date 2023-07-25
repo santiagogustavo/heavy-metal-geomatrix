@@ -74,6 +74,10 @@ public class PickupController : MonoBehaviour {
     }
 
     void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag != "Player") {
+            return;
+        }
+
         ClearCollisionMaterial(transform);
         isInside = false;
         collisionObject = null;

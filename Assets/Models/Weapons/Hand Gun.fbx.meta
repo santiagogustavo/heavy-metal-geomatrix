@@ -1,12 +1,17 @@
 fileFormatVersion: 2
 guid: 407abb116d65ef940b9a5fe4cdd3324c
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -7453387558714718212
     second: Armature|Shoot
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 54429747
+    second: {fileID: 2100000, guid: b757324e538565d4c916e20076e3987c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -80,6 +85,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -112,6 +118,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

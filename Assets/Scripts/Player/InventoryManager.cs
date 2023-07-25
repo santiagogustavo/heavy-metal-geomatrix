@@ -175,7 +175,6 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
-
     private void Shoot() {
         weaponBurstCount++;
         WeaponController weapon = leftHandItem.GetComponent<WeaponController>();

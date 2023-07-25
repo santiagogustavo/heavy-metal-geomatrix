@@ -63,6 +63,9 @@ public class AnimationController : MonoBehaviour {
     }
 
     public bool IsAttacking() {
+        if (IsNextAnimation("Idle")) {
+            return false;
+        }
         return IsCurrentAnimation("Sword 1") || IsCurrentAnimation("Sword 2");
     }
 

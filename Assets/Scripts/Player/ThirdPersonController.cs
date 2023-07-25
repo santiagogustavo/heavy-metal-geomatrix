@@ -22,6 +22,10 @@ public class ThirdPersonController : MonoBehaviour {
     public bool currGroundedState = true;
     bool lastGroundedState = true;
 
+    public float weight = 2.5f;
+    public float fallThreshold = 0.3f;
+    float fallDistance = 0f;
+
     public bool hasJumped = false;
     public bool hasDoubleJumped = false;
     public bool isDashing = false;
@@ -83,7 +87,7 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void UpdateGravity() {
-        velocity.y += Physics.gravity.y * Time.deltaTime;
+        velocity.y += Physics.gravity.y * weight * Time.deltaTime;
 
         if (!lastGroundedState) {
             if (currGroundedState && !isDashing) {
@@ -92,7 +96,7 @@ public class ThirdPersonController : MonoBehaviour {
                 }
                 hasJumped = false;
                 hasDoubleJumped = false;
-            } else if (!animator.IsCurrentAnimation("Jump") && !isDashing) {
+            } else if (!animator.IsCurrentAnimation("Jump") && !isDashing && fallDistance > fallThreshold) {
                 animator.ChangeAnimationState("Fall");
             }
         }
@@ -130,6 +134,20 @@ public class ThirdPersonController : MonoBehaviour {
         }
     }
 
+    void UpdateFall() {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f)) {
+            fallDistance = hit.distance;
+        } else {
+            fallDistance = 1f;
+        }
+    }
+
+    void UpdateRaycastHit() {
+        
+    }
+
     void Update() {
         if (GameManager.instance.IsGamePaused()) {
             return;
@@ -137,6 +155,8 @@ public class ThirdPersonController : MonoBehaviour {
 
         currGroundedState = controller.isGrounded;
 
+        UpdateFall();
+        UpdateRaycastHit();
         UpdatePublicVariables();
         UpdateDashParticle();
         UpdateGravity();

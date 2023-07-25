@@ -7,10 +7,19 @@ public class SwordController : MonoBehaviour {
     GameObject sparks;
 
     [SerializeField]
+    GameObject hit;
+
+    [SerializeField]
     ParticleSystem trail;
 
     [SerializeField]
-    GameObject swordHitSfx;
+    GameObject levelHitSfx;
+
+    [SerializeField]
+    GameObject playerHitSfx;
+
+    [SerializeField]
+    float damageApplied;
 
     public bool isPlaying = false;
 
@@ -32,21 +41,36 @@ public class SwordController : MonoBehaviour {
         Instantiate(sparks, contactPoint, rotation, collision.transform);
 
         if (hit) {
-            Instantiate(swordHitSfx, contactPoint, rotation);
+            Instantiate(levelHitSfx, contactPoint, rotation);
         }
+    }
+
+    void InstantiateImpact(Collision collision) {
+        Vector3 contactPoint = collision.contacts[0].point;
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, contactPoint);
+        Instantiate(hit, contactPoint, rotation, collision.transform);
+        Instantiate(playerHitSfx, contactPoint, rotation);
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.layer != 3 || !isPlaying) {
+        if (!isPlaying) {
             return;
         }
-        InstantiateSparks(collision, true);
+        if (collision.gameObject.layer == 3) {
+            collision.gameObject.GetComponent<BreakableProp>()?.InflictDamage(damageApplied);
+            InstantiateSparks(collision, true);
+        }
+        if (collision.gameObject.layer == 6) {
+            InstantiateImpact(collision);
+        }
     }
 
     void OnCollisionStay(Collision collision) {
-        if (collision.gameObject.layer != 3 || !isPlaying) {
+        if (!isPlaying) {
             return;
         }
-        InstantiateSparks(collision);
+        if (collision.gameObject.layer == 3) {
+            InstantiateSparks(collision);
+        }
     }
 }

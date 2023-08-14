@@ -6,6 +6,8 @@ public class InputManager : MonoBehaviour {
     public static InputManager instance;
     public float horizontal;
     public float vertical;
+    public float mouseX;
+    public float mouseY;
     public float dPadX;
     public float dPadY;
 
@@ -32,11 +34,11 @@ public class InputManager : MonoBehaviour {
     }
 
     float GetMouseLeft() {
-        return Input.GetMouseButtonDown(1) ? 1f : 0f;
+        return Input.GetMouseButton(0) ? 1f : 0f;
     }
 
     float GetMouseRight() {
-        return Input.GetMouseButtonDown(0) ? 1f : 0f;
+        return Input.GetMouseButton(1) ? 1f : 0f;
     }
 
     public bool GetUpAnalog() {
@@ -142,6 +144,8 @@ public class InputManager : MonoBehaviour {
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+        mouseX = Input.GetAxisRaw("Mouse X");
+        mouseY = Input.GetAxisRaw("Mouse Y");
         jump = Input.GetButtonDown("Jump");
         fire1 = Input.GetButtonDown("Fire1");
         fire2 = Input.GetButtonDown("Fire2");
@@ -149,8 +153,8 @@ public class InputManager : MonoBehaviour {
         fire4 = Input.GetButtonDown("Fire4");
         fire5 = Input.GetButtonDown("Fire5");
         pause = Input.GetButtonDown("Pause");
-        leftTrigger = Mathf.Max(Input.GetAxis("Left Trigger"), GetMouseLeft());
-        rightTrigger = Mathf.Max(Input.GetAxis("Right Trigger"), GetMouseRight());
+        leftTrigger = Mathf.Max(Input.GetAxis("Left Trigger"), GetMouseRight());
+        rightTrigger = Mathf.Max(Input.GetAxis("Right Trigger"), GetMouseLeft());
         dPadX = Input.GetAxisRaw("DPad X");
         dPadY = Input.GetAxisRaw("DPad Y");
     }

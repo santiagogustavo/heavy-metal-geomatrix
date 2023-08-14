@@ -25,11 +25,19 @@ public class UIMatchController : MonoBehaviour {
     [SerializeField]
     AudioSource impact;
 
+    [SerializeField]
+    bool debug = false;
+
     void Start() {
-        StartCoroutine(AnnounceRound());
         FightText.SetActive(false);
         RoundText.SetActive(false);
         RoundInvertBg.SetActive(false);
+
+        if (debug) {
+            FightStart(false);
+            return;
+        }
+        StartCoroutine(AnnounceRound());
     }
 
     IEnumerator AnnounceRound() {
@@ -46,14 +54,15 @@ public class UIMatchController : MonoBehaviour {
         FightStart();
     }
 
-    void FightStart() {
+    void FightStart(bool playEffects = true) {
         GameManager.instance.SetMatchWasStarted(true);
 
-        fight.Play();
-        impact.Play();
-
-        RoundText.SetActive(false);
-        FightText.SetActive(true);
+        if (playEffects) {
+            fight.Play();
+            impact.Play();
+            RoundText.SetActive(false);
+            FightText.SetActive(true);
+        }
 
         Invoke("CloseMatchUI", 1f);
     }

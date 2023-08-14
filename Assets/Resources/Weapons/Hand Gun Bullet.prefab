@@ -4826,6 +4826,7 @@ GameObject:
   - component: {fileID: 3970218995687469535}
   - component: {fileID: 8502203797826826839}
   - component: {fileID: 2751003733050518010}
+  - component: {fileID: 1561634966231944361}
   m_Layer: 0
   m_Name: Hand Gun Bullet
   m_TagString: Untagged
@@ -4879,6 +4880,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1561634966231944361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668586822941491444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f5a699dbf58b14ea7dbfe5ac735ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4366789432835697342
 GameObject:
   m_ObjectHideFlags: 0

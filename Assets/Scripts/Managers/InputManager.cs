@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour {
     public bool dPadYInUse;
 
     public bool jump;
+    public bool dash;
+
     public bool fire1;
     public bool fire2;
     public bool fire3;
@@ -147,6 +149,7 @@ public class InputManager : MonoBehaviour {
         mouseX = Input.GetAxisRaw("Mouse X");
         mouseY = Input.GetAxisRaw("Mouse Y");
         jump = Input.GetButtonDown("Jump");
+        dash = Input.GetButtonDown("Dash");
         fire1 = Input.GetButtonDown("Fire1");
         fire2 = Input.GetButtonDown("Fire2");
         fire3 = Input.GetButtonDown("Fire3");

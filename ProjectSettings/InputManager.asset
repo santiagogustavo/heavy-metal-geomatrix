@@ -58,9 +58,9 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left alt
+    positiveButton: e
     altNegativeButton: 
-    altPositiveButton: mouse 1
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -74,7 +74,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left shift
+    positiveButton: right alt
     altNegativeButton: 
     altPositiveButton: mouse 2
     gravity: 1000
@@ -157,9 +157,9 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 0
+    gravity: 1
     dead: 0.35
-    sensitivity: 1
+    sensitivity: 10
     snap: 0
     invert: 0
     type: 2
@@ -173,9 +173,9 @@ InputManager:
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 0
+    gravity: 1
     dead: 0.35
-    sensitivity: 1
+    sensitivity: 10
     snap: 0
     invert: 1
     type: 2
@@ -303,7 +303,7 @@ InputManager:
     altPositiveButton: 
     gravity: 0
     dead: 0.1
-    sensitivity: 1
+    sensitivity: 0.5
     snap: 0
     invert: 0
     type: 2
@@ -319,7 +319,7 @@ InputManager:
     altPositiveButton: 
     gravity: 0
     dead: 0.1
-    sensitivity: 1
+    sensitivity: 0.5
     snap: 0
     invert: 1
     type: 2
@@ -644,5 +644,37 @@ InputManager:
     invert: 0
     type: 2
     axis: 6
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: Dash
+    descriptiveName: Left Analog Click
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 8
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: Dash
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left shift
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
     joyNum: 1
   m_UsePhysicalKeys: 0

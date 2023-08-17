@@ -9,6 +9,10 @@ public class PlayerCameraTargetController : MonoBehaviour {
     float dampTime = 0.2f;
     public Vector2 turn;
 
+    void Start() {
+        turn.x = transform.rotation.eulerAngles.y;
+    }
+
     void ComputeInputs() {
         turn.x += InputManager.instance.mouseX;
         turn.y += InputManager.instance.mouseY;
@@ -21,10 +25,10 @@ public class PlayerCameraTargetController : MonoBehaviour {
     }
 
     void Update() {
-        if (GameManager.instance.IsGamePaused()) {
+        MoveRotation();
+        if (GameManager.instance.IsGamePaused() || !GameManager.instance.MatchWasStarted()) {
             return;
         }
         ComputeInputs();
-        MoveRotation();
     }
 }

@@ -8,7 +8,7 @@ public class UIEffectsController : MonoBehaviour {
     public float maxYRotation;
 
     void Update() {
-        float cameraYRotation = transform.eulerAngles.x;
+        float cameraYRotation = transform.localEulerAngles.x;
         if (cameraYRotation >= minYRotation && cameraYRotation <= maxYRotation) {
             if (!effect.isPlaying) {
                 effect.Play();

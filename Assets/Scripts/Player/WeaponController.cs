@@ -21,7 +21,9 @@ public class WeaponController : MonoBehaviour {
     [SerializeField]
     GameObject bullet;
 
-    void Awake() {
+    bool lockShoot;
+
+    void Start() {
         particles = GetComponentInChildren<ParticleSystem>();
         sfx = GetComponentInChildren<AudioSource>();
     }
@@ -32,9 +34,19 @@ public class WeaponController : MonoBehaviour {
         bulletInstance.GetComponent<Rigidbody>().AddForce(bulletInstance.transform.forward * 50f, ForceMode.Impulse);
     }
 
+    void UnlockShoot() {
+        lockShoot = false;
+    }
+
     public void Shoot() {
+        if (lockShoot) {
+            return;
+        }
         particles.Play();
         sfx.Play();
-        Invoke("InstantiateBullet", 0.05f);
+        InstantiateBullet();
+
+        lockShoot = true;
+        Invoke("UnlockShoot", fireRate);
     }
 }

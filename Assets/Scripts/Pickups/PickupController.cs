@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EquipType {
+    Body,
+    WeaponSingle,
+    WeaponDouble,
+    MeleeLight,
+    MeleeHeavy,
+}
+
 public class PickupController : MonoBehaviour {
     private Animator animator;
 
     public bool pickupOnPress = false;
-    public string slot;
+    public EquipType equip;
     public GameObject item;
     public GameObject pickupEffect;
 
@@ -18,7 +26,7 @@ public class PickupController : MonoBehaviour {
     float duration = 0.2f;
     float lerp;
 
-    void Awake() {
+    void Start() {
         animator = GetComponent<Animator>();
         Invoke("DestroyPickup", 5f);
     }
@@ -29,8 +37,8 @@ public class PickupController : MonoBehaviour {
     }
 
     void PickUpItemAndDestroy() {
-        InventoryManager playerInventory = collisionObject.GetComponent<InventoryManager>();
-        playerInventory.PickUpItem(slot, item, pickupOnPress);
+        InventoryManagerV2 playerInventory = collisionObject.GetComponent<InventoryManagerV2>();
+        playerInventory.PickUpItem(equip, item, pickupOnPress);
         Destroy(gameObject);
 
         if (pickupEffect) {
@@ -91,7 +99,7 @@ public class PickupController : MonoBehaviour {
         if (isInside) {
             LerpCollisionMaterial();
 
-            if (Input.GetButtonDown("Fire2")) {
+            if (InputManager.instance.fire2) {
                 PickUpItemAndDestroy();
             }
         }

@@ -8,15 +8,13 @@ public class JetController : MonoBehaviour {
     AudioSource streamSfx;
     AudioSource loopSfx;
 
-    void Awake() {
+    void Start() {
         GameObject sfxGroup = gameObject.transform.Find("SFX").gameObject;
         particles = GetComponentsInChildren<ParticleSystem>();
         beamSfx = sfxGroup.transform.Find("Beam").gameObject.GetComponent<AudioSource>();
         streamSfx = sfxGroup.transform.Find("Stream").gameObject.GetComponent<AudioSource>();
         loopSfx = sfxGroup.transform.Find("Loop").gameObject.GetComponent<AudioSource>();
-    }
 
-    void Start() {
         PlayJetBeam();
     }
 
@@ -30,9 +28,8 @@ public class JetController : MonoBehaviour {
     }
 
     public void PlayJetStream(bool play) {
-        streamSfx.Play();
-
-        if (play) {
+        if (play && !loopSfx.isPlaying) {
+            streamSfx.Play();
             loopSfx.Play();
         } else if (!play) {
             loopSfx.Stop();
@@ -40,9 +37,9 @@ public class JetController : MonoBehaviour {
 
         foreach (ParticleSystem particle in particles) {
             if (particle.name == "Jet Stream") {
-                if (play) {
+                if (play && !particle.isPlaying) {
                     particle.Play();
-                } else {
+                } else if (!play) {
                     particle.Stop();
                 }
             }

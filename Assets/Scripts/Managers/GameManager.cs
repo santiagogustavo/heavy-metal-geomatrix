@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public static GameState state;
     public static event Action<GameState> OnGameStateChanged;
 
+    GameObject currentPlayerInstance;
     static LevelMeta level;
     static PlayerMeta player1;
     bool isPaused;
@@ -51,6 +52,14 @@ public class GameManager : MonoBehaviour {
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void SetCurrentPlayerInstance(GameObject instance) {
+        currentPlayerInstance = instance;
+    }
+
+    public GameObject GetCurrentPlayerInstance() {
+        return currentPlayerInstance;
     }
 
     public void SetPlayer1Meta(PlayerMeta meta) {

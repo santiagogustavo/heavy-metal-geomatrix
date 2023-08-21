@@ -36,12 +36,13 @@ public class SwordController : MonoBehaviour {
     }
 
     void InstantiateSparks(Collision collision, bool hit = false) {
-        Vector3 contactPoint = collision.contacts[0].point;
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, contactPoint);
-        Instantiate(sparks, contactPoint, rotation, collision.transform);
+        ContactPoint contactPoint = collision.contacts[0];
+        Vector3 position = contactPoint.point + (contactPoint.normal * 0.1f);
+        Quaternion rotation = Quaternion.FromToRotation(-Vector3.forward, contactPoint.normal);
+        Instantiate(sparks, position, rotation, collision.transform);
 
         if (hit) {
-            Instantiate(levelHitSfx, contactPoint, rotation);
+            Instantiate(levelHitSfx, position, rotation);
         }
     }
 

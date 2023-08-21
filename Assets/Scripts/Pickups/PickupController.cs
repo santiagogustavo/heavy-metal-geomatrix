@@ -38,7 +38,9 @@ public class PickupController : MonoBehaviour {
 
     void PickUpItemAndDestroy() {
         InventoryManagerV2 playerInventory = collisionObject.GetComponent<InventoryManagerV2>();
-        playerInventory.PickUpItem(equip, item, pickupOnPress);
+        if (!playerInventory.PickUpItem(equip, item, pickupOnPress)) {
+            return;
+        }
         Destroy(gameObject);
 
         if (pickupEffect) {

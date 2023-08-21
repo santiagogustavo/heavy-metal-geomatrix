@@ -26,6 +26,12 @@ public class UIMatchController : MonoBehaviour {
     AudioSource impact;
 
     [SerializeField]
+    float roundAnnounceTime = 0.55f;
+
+    [SerializeField]
+    float fightStartTime = 2f;
+
+    [SerializeField]
     bool debug = false;
 
     void Start() {
@@ -41,7 +47,7 @@ public class UIMatchController : MonoBehaviour {
     }
 
     IEnumerator AnnounceRound() {
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(roundAnnounceTime);
 
         RoundText.SetActive(true);
         RoundInvertBg.SetActive(true);
@@ -49,7 +55,7 @@ public class UIMatchController : MonoBehaviour {
         roundBase.Play();
         round1.PlayDelayed(0.75f);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(fightStartTime);
 
         FightStart();
     }

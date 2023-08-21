@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCameraControllerV2 : MonoBehaviour {
-    [SerializeField]
-    Transform cameraTarget;
+    [SerializeField] LayerMask cullingMask = new LayerMask();
+    [SerializeField] Transform cameraTarget;
+    [SerializeField] Transform cameraPivot;
 
     Camera cam;
     float originalFov;
@@ -17,6 +18,7 @@ public class PlayerCameraControllerV2 : MonoBehaviour {
 
     float positionLerp = 0.2f;
     float rotationLerp = 0.1f;
+    float collisionAdjust = 0.1f;
 
     void Start() {
         cam = GetComponent<Camera>();
@@ -35,9 +37,17 @@ public class PlayerCameraControllerV2 : MonoBehaviour {
         isDashing = dash;
     }
 
+    void DetectCollisionAndCulling() {
+        RaycastHit hit;
+        if (Physics.Linecast(cameraTarget.position, cameraPivot.position, out hit, cullingMask)) {
+            transform.position = hit.point + transform.forward * collisionAdjust;
+        }
+    }
+
     void Update() {
         transform.position = Vector3.MoveTowards(transform.position, cameraTarget.position, positionLerp);
         transform.rotation = Quaternion.Lerp(transform.rotation, cameraTarget.rotation, rotationLerp);
+        //DetectCollisionAndCulling();
 
         if (isAiming) {
             currentFov = aimFov;

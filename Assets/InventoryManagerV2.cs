@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InventoryManagerV2 : MonoBehaviour {
     PlayerMovementController playerController;
+    Animator playerAnimator;
 
     Transform bodySlot;
     GameObject bodyInstance;
@@ -12,30 +13,43 @@ public class InventoryManagerV2 : MonoBehaviour {
     GameObject pickupInstance;
 
     bool isDashing;
+    bool isDropping;
     bool isShooting;
+    bool isAttacking;
     bool isDoubleJumping;
 
     void Start() {
         playerController = GetComponent<PlayerMovementController>();
-        bodySlot = GetGameObjectByName("Body Slot").transform;
-        pickupSlot = GetGameObjectByName("Pickup Slot").transform;
-    }
-
-    private GameObject GetGameObjectByName(string name) {
-        GameObject found = GameObject.Find(name);
-        return found.transform.IsChildOf(transform) ? found : null;
+        playerAnimator = playerController.GetCharacterAnimator();
+        bodySlot = Finder.GetGameObjectByName(transform, "Body Slot").transform;
+        pickupSlot = Finder.GetGameObjectByName(transform, "Pickup Slot").transform;
     }
 
     void ClearAnimation() {
         playerController.SetIsPickingUp(false);
     }
 
+    void ComputeDrop() {
+        if (!pickupInstance) {
+            return;
+        }
+        WeaponController weapon = pickupInstance?.GetComponent<WeaponController>();
+        if (weapon) {
+            isDropping = weapon.bulletCount <= 0;
+        }
+    }
+
     void ComputeInputs() {
         isShooting = InputManager.instance.rightTrigger > 0f;
+        isAttacking = InputManager.instance.rightTriggerOneShot;
         isDashing = playerController.GetIsDashing();
         isDoubleJumping = playerController.GetIsDoubleJumping();
+    }
 
+    void PassVariablesToPlayer() {
         playerController.SetIsShooting(isShooting);
+        playerController.SetIsAttacking(isAttacking);
+        playerController.SetIsDropping(isDropping);
     }
 
     void HandleJetpack() {
@@ -48,24 +62,49 @@ public class InventoryManagerV2 : MonoBehaviour {
         if (isDoubleJumping) {
             jetpack.PlayJetBeam();
         }
+
+        if (jetpack.fuel <= 0f) {
+            playerController.SetJetpackHasFuel(false);
+        }
     }
 
-    void PickupShoot() {
+    void PickUpShoot() {
         if (!isShooting || !pickupInstance) {
             return;
         }
-        WeaponController weapon = pickupInstance.GetComponent<WeaponController>();
-        weapon?.Shoot();
-
         isShooting = false;
     }
 
-    void PickupSword() {
+    bool CanPickUp() {
+        AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
+        return animationState.IsName("Look - Melee Light")
+            || animationState.IsName("Look - Melee Heavy")
+            || animationState.IsName("Look - Weapon Single")
+            || animationState.IsName("Look - Weapon Double")
+            || animationState.IsName("Look - Empty");
+    }
+
+    bool IsSwordAttacking() {
+        AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
+        return animationState.IsName("Attack - Melee Light 1")
+            || animationState.IsName("Attack - Melee Heavy 1");
+    }
+
+    void PickUpSword() {
         if (!pickupInstance) {
             return;
         }
         SwordController sword = pickupInstance.GetComponent<SwordController>();
-        sword?.SetTrailActive(false);
+        AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
+        sword?.SetTrailActive(IsSwordAttacking());
+    }
+
+    void PickUpDrop() {
+        if (!isDropping || !pickupInstance) {
+            return;
+        }
+        isDropping = false;
+        playerController.SetEquip(EquipType.Body);
     }
 
     void PickUpEquip(GameObject item) {
@@ -77,7 +116,7 @@ public class InventoryManagerV2 : MonoBehaviour {
         );
         pickupInstance.transform.SetParent(pickupSlot, false);
     }
-
+    
     void PickUpBody(GameObject item) {
         Destroy(bodyInstance);
         bodyInstance = Instantiate(
@@ -88,7 +127,10 @@ public class InventoryManagerV2 : MonoBehaviour {
         bodyInstance.transform.SetParent(bodySlot, false);
     }
 
-    public void PickUpItem(EquipType equip, GameObject item, bool playAnimation) {
+    public bool PickUpItem(EquipType equip, GameObject item, bool playAnimation) {
+        if (!CanPickUp() && playAnimation) {
+            return false;
+        }
         if (playAnimation) {
             playerController.SetIsPickingUp(true);
             Invoke("ClearAnimation", 0.05f);
@@ -99,14 +141,24 @@ public class InventoryManagerV2 : MonoBehaviour {
             PickUpEquip(item);
         } else {
             playerController.SetHasJetpack(true);
+            playerController.SetJetpackHasFuel(true);
             PickUpBody(item);
         }
+
+        return true;
     }
 
     void Update() {
         ComputeInputs();
-        PickupShoot();
-        PickupSword();
+        ComputeDrop();
+        PassVariablesToPlayer();
+        PickUpShoot();
+        PickUpSword();
+        PickUpDrop();
         HandleJetpack();
+    }
+
+    public GameObject GetCurrentPickup() {
+        return pickupInstance;
     }
 }

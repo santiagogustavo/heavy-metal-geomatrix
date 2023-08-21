@@ -13,16 +13,18 @@ public class PlayerHitController : MonoBehaviour {
 
     bool CheckIfWeaponIsAttacking(Collision collision) {
         SwordController sword = collision.gameObject.GetComponent<SwordController>();
-        return !!sword && sword.isPlaying;
+        BulletController bullet = collision.gameObject.GetComponent<BulletController>();
+        return !!bullet || (!!sword && sword.isPlaying);
     }
 
     void InstantiateSpill(Collision collision, bool hit = false) {
-        Vector3 contactPoint = collision.contacts[0].point;
-        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, contactPoint);
-        Instantiate(blood, contactPoint, rotation, collision.transform);
+        ContactPoint contactPoint = collision.contacts[0];
+        Vector3 position = contactPoint.point + (contactPoint.normal * 0.1f);
+        Quaternion rotation = Quaternion.FromToRotation(-Vector3.forward, contactPoint.normal);
+        Instantiate(blood, position, rotation, collision.transform);
 
         if (hit) {
-            Instantiate(sfx, contactPoint, rotation, collision.transform);
+            Instantiate(sfx, position, rotation, collision.transform);
         }
     }
 

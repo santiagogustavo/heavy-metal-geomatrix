@@ -11,6 +11,7 @@ TagManager:
   - Meta
   - Player Name
   - Invisible Wall
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - UI FX
   - Particles
   - Weapon
-  - 
+  - Bullet
   - 
   - 
   - 

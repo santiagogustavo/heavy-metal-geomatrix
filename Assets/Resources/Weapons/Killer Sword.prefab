@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2668080194006638930}
   m_Layer: 10
   m_Name: Killer Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,6 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076661822251983820}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,7 +35,6 @@ Transform:
   - {fileID: 6306317067321714435}
   - {fileID: 4726883290429200549}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5620457529349122564
 MonoBehaviour:
@@ -62,10 +62,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076661822251983820}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -79,9 +90,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076661822251983820}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.058946133, y: 1.1908476, z: 0.2895601}
   m_Center: {x: -0.0018597841, y: 0.7614429, z: 0.016738072}
 --- !u!1001 &2306974525520115274
@@ -89,7 +108,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 1979963976165657647}
     m_Modifications:
     - target: {fileID: 4772028256068666798, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
@@ -103,6 +122,70 @@ PrefabInstance:
     - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: TrailModule.lifetime.scalar
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.g
+      value: 0.9364519
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.atime0
+      value: 578
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key0.g
+      value: 0.5453615
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011759581492782967, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxGradient.m_ColorSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7033855525372784367, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
       propertyPath: m_RootOrder
@@ -149,7 +232,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20bbec8c3bcdd254586d8a1c86059129, type: 3}
 --- !u!4 &4726883290429200549 stripped
 Transform:
@@ -166,7 +251,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 1979963976165657647}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c458f4a204366e14dbdf8c17d6b274ad, type: 3}
@@ -230,7 +315,9 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c458f4a204366e14dbdf8c17d6b274ad, type: 3}
 --- !u!4 &6306317067321714435 stripped
 Transform:

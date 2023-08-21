@@ -28,6 +28,8 @@ public class InputManager : MonoBehaviour {
 
     public float leftTrigger;
     public float rightTrigger;
+    public bool leftTriggerOneShot;
+    public bool rightTriggerOneShot;
 
     void Awake() {
         if (!instance) {
@@ -41,6 +43,14 @@ public class InputManager : MonoBehaviour {
 
     float GetMouseRight() {
         return Input.GetMouseButton(1) ? 1f : 0f;
+    }
+
+    bool GetMouseLeftOneShot() {
+        return Input.GetMouseButtonDown(0);
+    }
+
+    bool GetMouseRightOneShot() {
+        return Input.GetMouseButtonDown(1);
     }
 
     public bool GetUpAnalog() {
@@ -158,6 +168,8 @@ public class InputManager : MonoBehaviour {
         pause = Input.GetButtonDown("Pause");
         leftTrigger = Mathf.Max(Input.GetAxis("Left Trigger"), GetMouseRight());
         rightTrigger = Mathf.Max(Input.GetAxis("Right Trigger"), GetMouseLeft());
+        leftTriggerOneShot = Input.GetAxis("Left Trigger") > 0f || GetMouseRightOneShot();
+        rightTriggerOneShot = Input.GetAxis("Right Trigger") > 0f || GetMouseLeftOneShot();
         dPadX = Input.GetAxisRaw("DPad X");
         dPadY = Input.GetAxisRaw("DPad Y");
     }

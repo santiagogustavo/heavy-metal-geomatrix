@@ -28,19 +28,10 @@ public class InventoryManager : MonoBehaviour {
         playerController = GetComponent<ThirdPersonController>();
         animationController = GetComponentInChildren<AnimationController>();
 
-        List<GameObject> characterSlots = GetGameObjectsByTagName("Character Slot");
-        bodySlot = GetTransformFromGameObjects(characterSlots, "Body Slot");
-        leftHandSlot = GetTransformFromGameObjects(characterSlots, "Left Hand Slot");
-        rightHandSlot = GetTransformFromGameObjects(characterSlots, "Right Hand Slot");
-    }
-
-    private List<GameObject> GetGameObjectsByTagName(string tag) {
-        List<GameObject> found = new List<GameObject>(GameObject.FindGameObjectsWithTag(tag)).FindAll(g => g.transform.IsChildOf(transform));
-        return found;
-    }
-
-    private Transform GetTransformFromGameObjects(List<GameObject> gameObjects, string name) {
-        return gameObjects.Find(g => g.name == name)?.transform;
+        List<GameObject> characterSlots = Finder.GetGameObjectsByTagName(transform, "Character Slot");
+        bodySlot = Finder.GetTransformFromGameObjects(characterSlots, "Body Slot");
+        leftHandSlot = Finder.GetTransformFromGameObjects(characterSlots, "Left Hand Slot");
+        rightHandSlot = Finder.GetTransformFromGameObjects(characterSlots, "Right Hand Slot");
     }
 
     public bool HasJetpack() {
@@ -180,10 +171,11 @@ public class InventoryManager : MonoBehaviour {
         WeaponController weapon = leftHandItem.GetComponent<WeaponController>();
         hasPlayedShootAnimation = true;
         animationController.ChangeAnimationState("Shoot 1", 0.05f, true);
-        weapon.Shoot();
+        weapon.Shoot(weapon.transform.position);
+
 
         if (weaponBurstCount == weapon.burst) {
-            Invoke("UnlockShoot", weapon.repeatRate);
+            Invoke("UnlockShoot", weapon.burstRate);
         } else {
             Invoke("Shoot", weapon.fireRate);
         }

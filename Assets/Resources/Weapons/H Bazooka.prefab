@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2959013879090070882}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: H Bazooka
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fafec40cba6742548b9275df6ec45409, type: 3}
       propertyPath: m_Name
       value: H Bazooka
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fafec40cba6742548b9275df6ec45409, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

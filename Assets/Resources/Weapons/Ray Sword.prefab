@@ -5008,7 +5008,7 @@ GameObject:
   - component: {fileID: 7804451846508615992}
   m_Layer: 10
   m_Name: Ray Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

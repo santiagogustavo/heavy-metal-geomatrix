@@ -7,13 +7,19 @@ public class WeaponController : MonoBehaviour {
     AudioSource sfx;
 
     [SerializeField]
+    public int bullets;
+
+    [SerializeField]
+    public int bulletCount;
+
+    [SerializeField]
     public float fireRate;
 
     [SerializeField]
-    public float repeatRate;
+    public int burst;
 
     [SerializeField]
-    public int burst;
+    public float burstRate;
 
     [SerializeField]
     Transform bulletHole;
@@ -21,32 +27,24 @@ public class WeaponController : MonoBehaviour {
     [SerializeField]
     GameObject bullet;
 
-    bool lockShoot;
-
     void Start() {
+        bulletCount = bullets;
         particles = GetComponentInChildren<ParticleSystem>();
         sfx = GetComponentInChildren<AudioSource>();
     }
 
-    public void InstantiateBullet() {
-        GameObject bulletInstance = Instantiate(bullet, bulletHole.transform.position, bulletHole.transform.rotation);
-        bulletInstance.transform.rotation = Quaternion.Euler(0f, bulletInstance.transform.eulerAngles.y, bulletInstance.transform.eulerAngles.z);
-        bulletInstance.GetComponent<Rigidbody>().AddForce(bulletInstance.transform.forward * 50f, ForceMode.Impulse);
+    public void InstantiateBullet(Vector3 at) {
+        Vector3 aimDirection = (at - bulletHole.position).normalized;
+        Instantiate(bullet, bulletHole.transform.position, Quaternion.LookRotation(aimDirection, Vector3.up));
     }
 
-    void UnlockShoot() {
-        lockShoot = false;
-    }
-
-    public void Shoot() {
-        if (lockShoot) {
+    public void Shoot(Vector3 at) {
+        if (bulletCount == 0) {
             return;
         }
+        bulletCount--;
         particles.Play();
         sfx.Play();
-        InstantiateBullet();
-
-        lockShoot = true;
-        Invoke("UnlockShoot", fireRate);
+        InstantiateBullet(at);
     }
 }

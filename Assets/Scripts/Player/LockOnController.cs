@@ -94,9 +94,6 @@ public class LockOnController : MonoBehaviour {
         if (GameManager.instance.IsGamePaused()) {
             return;
         }
-        if (InputManager.instance.fire3) {
-            NextLockTarget();
-        }
         if (IsLockedOn()) {
             UpdateCameraXAxis();
             UpdateCameraYAxis();

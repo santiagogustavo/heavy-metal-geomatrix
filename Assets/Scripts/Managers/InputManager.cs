@@ -1,35 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour {
     public static InputManager instance;
+
+    /* PLAYER */
+    public Vector2 move;
+    public Vector2 look;
     public float horizontal;
     public float vertical;
-    public float mouseX;
-    public float mouseY;
-    public float dPadX;
-    public float dPadY;
-
-    public bool horizontalInUse;
-    public bool verticalInUse;
-    public bool dPadXInUse;
-    public bool dPadYInUse;
 
     public bool jump;
-    public bool dash;
-
-    public bool fire1;
-    public bool fire2;
-    public bool fire3;
-    public bool fire4;
-    public bool fire5;
+    public bool pickup;
     public bool pause;
+    public bool dash;
+    public bool aim;
+    public bool shootTap;
+    public bool shootHold;
 
-    public float leftTrigger;
-    public float rightTrigger;
-    public bool leftTriggerOneShot;
-    public bool rightTriggerOneShot;
+    /* UI */
+    public Vector2 moveTap;
+    public bool select;
+    public bool cancel;
 
     void Awake() {
         if (!instance) {
@@ -37,140 +31,80 @@ public class InputManager : MonoBehaviour {
         }
     }
 
-    float GetMouseLeft() {
-        return Input.GetMouseButton(0) ? 1f : 0f;
+    public bool GetUpTap() {
+        return Mathf.RoundToInt(moveTap.y) > 0;
     }
 
-    float GetMouseRight() {
-        return Input.GetMouseButton(1) ? 1f : 0f;
+    public bool GetDownTap() {
+        return Mathf.RoundToInt(moveTap.y) < 0;
     }
 
-    bool GetMouseLeftOneShot() {
-        return Input.GetMouseButtonDown(0);
+    public bool GetLeftTap() {
+        return Mathf.RoundToInt(moveTap.x) < 0;
     }
 
-    bool GetMouseRightOneShot() {
-        return Input.GetMouseButtonDown(1);
+    public bool GetRightTap() {
+        return Mathf.RoundToInt(moveTap.x) > 0;
     }
 
-    public bool GetUpAnalog() {
-        return vertical > 0f;
+    private void LateUpdate() {
+        jump = false;
+        pickup = false;
+        pause = false;
+        dash = false;
+        shootTap = false;
+        moveTap = new Vector2();
+        select = false;
+        cancel = false;
     }
 
-    public bool GetDownAnalog() {
-        return vertical < 0f;
+    private void OnJump(InputValue value) {
+        jump = true;
     }
 
-    public bool GetLeftAnalog() {
-        return horizontal < 0f;
+    private void OnPickup() {
+        pickup = true;
     }
 
-    public bool GetRightAnalog() {
-        return horizontal > 0f;
+    private void OnPause() {
+        pause = true;
     }
 
-    public bool GetUpDpad() {
-        return Mathf.RoundToInt(dPadY) == 1f;
+    private void OnDash() {
+        dash = true;
     }
 
-    public bool GetDownDpad() {
-        return Mathf.RoundToInt(dPadY) == -1f;
+    private void OnAim(InputValue value) {
+        aim = value.Get<float>() == 1;
     }
 
-    public bool GetLeftDpad() {
-        return Mathf.RoundToInt(dPadX) == -1f;
+    private void OnShootTap(InputValue value) {
+        shootTap = value.Get<float>() == 1;
     }
 
-    public bool GetRightDpad() {
-        return Mathf.RoundToInt(dPadX) == 1f;
+    private void OnShootHold(InputValue value) {
+        shootHold = value.Get<float>() == 1;
     }
 
-    public bool GetUp() {
-        return GetUpAnalog() || GetUpDpad();
+    private void OnMove(InputValue value) {
+        move = value.Get<Vector2>();
+        horizontal = move.x;
+        vertical = move.y;
     }
 
-    public bool GetDown() {
-        return GetDownAnalog() || GetDownDpad();
+    private void OnLook(InputValue value) {
+        look = value.Get<Vector2>();
     }
 
-    public bool GetLeft() {
-        return GetLeftAnalog() || GetLeftDpad();
+    private void OnMoveTap(InputValue value) {
+        moveTap = value.Get<Vector2>();
     }
 
-    public bool GetRight() {
-        return GetRightAnalog() || GetRightDpad();
-    }
-    public bool GetUpOneShot() {
-        return (GetUpAnalog() && !verticalInUse) || (GetUpDpad() && !dPadYInUse);
+    private void OnSelect() {
+        select = true;
     }
 
-    public bool GetDownOneShot() {
-        return (GetDownAnalog() && !verticalInUse) || (GetDownDpad() && !dPadYInUse);
-    }
-
-    public bool GetLeftOneShot() {
-        return (GetLeftAnalog() && !horizontalInUse) || (GetLeftDpad() && !dPadXInUse);
-    }
-
-    public bool GetRightOneShot() {
-        return (GetRightAnalog() && !horizontalInUse) || (GetRightDpad() && !dPadXInUse);
-    }
-
-    public void UpdateHorizontalInUse() {
-        if (horizontal != 0f) {
-            horizontalInUse = true;
-        } else {
-            horizontalInUse = false;
-        }
-    }
-
-    public void UpdateVerticalInUse() {
-        if (vertical != 0f) {
-            verticalInUse = true;
-        } else {
-            verticalInUse = false;
-        }
-    }
-
-    public void UpdateDPadXInUse() {
-        if (dPadX != 0f) {
-            dPadXInUse = true;
-        } else {
-            dPadXInUse = false;
-        }
-    }
-
-    public void UpdateDPadYInUse() {
-        if (dPadY != 0f) {
-            dPadYInUse = true;
-        } else {
-            dPadYInUse = false;
-        }
-    }
-
-    void Update() {
-        UpdateHorizontalInUse();
-        UpdateVerticalInUse();
-        UpdateDPadXInUse();
-        UpdateDPadYInUse();
-
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        mouseX = Input.GetAxisRaw("Mouse X");
-        mouseY = Input.GetAxisRaw("Mouse Y");
-        jump = Input.GetButtonDown("Jump");
-        dash = Input.GetButtonDown("Dash");
-        fire1 = Input.GetButtonDown("Fire1");
-        fire2 = Input.GetButtonDown("Fire2");
-        fire3 = Input.GetButtonDown("Fire3");
-        fire4 = Input.GetButtonDown("Fire4");
-        fire5 = Input.GetButtonDown("Fire5");
-        pause = Input.GetButtonDown("Pause");
-        leftTrigger = Mathf.Max(Input.GetAxis("Left Trigger"), GetMouseRight());
-        rightTrigger = Mathf.Max(Input.GetAxis("Right Trigger"), GetMouseLeft());
-        leftTriggerOneShot = Input.GetAxis("Left Trigger") > 0f || GetMouseRightOneShot();
-        rightTriggerOneShot = Input.GetAxis("Right Trigger") > 0f || GetMouseLeftOneShot();
-        dPadX = Input.GetAxisRaw("DPad X");
-        dPadY = Input.GetAxisRaw("DPad Y");
+    private void OnCancel() {
+        cancel = true;
     }
 }

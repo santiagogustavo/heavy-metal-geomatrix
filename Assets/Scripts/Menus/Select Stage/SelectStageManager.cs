@@ -68,11 +68,11 @@ public class SelectStageManager : MonoBehaviour {
         if (selected) {
             return;
         }
-        if (InputManager.instance.GetRightOneShot()) {
+        if (InputManager.instance.GetRightTap()) {
             GoToRightCard();
-        } else if (InputManager.instance.GetLeftOneShot()) {
+        } else if (InputManager.instance.GetLeftTap()) {
             GoToLeftCard();
-        } else if (InputManager.instance.fire1) {
+        } else if (InputManager.instance.select) {
             SelectStage();
         }
     }

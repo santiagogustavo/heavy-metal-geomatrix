@@ -101,7 +101,7 @@ public class PickupController : MonoBehaviour {
         if (isInside) {
             LerpCollisionMaterial();
 
-            if (InputManager.instance.fire2) {
+            if (InputManager.instance.pickup) {
                 PickUpItemAndDestroy();
             }
         }

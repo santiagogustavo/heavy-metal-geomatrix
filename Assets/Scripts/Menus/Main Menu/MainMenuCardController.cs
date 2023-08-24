@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class MainMenuCardController : MonoBehaviour {
-    [SerializeField]
-    public string itemName;
-
-    [SerializeField]
-    public string itemDescription;
+public class MainMenuCardController : MonoBehaviour, IPointerEnterHandler {
+    [SerializeField] public int index;
+    [SerializeField] public string itemName;
+    [SerializeField] public string itemDescription;
 
     [SerializeField]
     bool bypassDim;
@@ -33,6 +32,10 @@ public class MainMenuCardController : MonoBehaviour {
         dimColor = new Color(originalColor.r - 0.5f, originalColor.g - 0.5f, originalColor.b - 0.5f);
         originalPosition = rectTransform.localPosition;
         hidePosition = new Vector3(originalPosition.x - 25f, originalPosition.y, originalPosition.z);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+        Debug.Log("Mouse enter");
     }
 
     void Update() {

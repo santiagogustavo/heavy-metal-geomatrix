@@ -100,12 +100,12 @@ public class MainMenuManager : MonoBehaviour {
             return;
         }
 
-        if (InputManager.instance.fire1) {
+        if (InputManager.instance.select) {
             SelectCurrent();
         }
-        if (InputManager.instance.GetDownOneShot()) {
+        if (InputManager.instance.GetDownTap()) {
             SelectDown();
-        } else if (InputManager.instance.GetUpOneShot()) {
+        } else if (InputManager.instance.GetUpTap()) {
             SelectUp();
         }
     }
@@ -120,5 +120,9 @@ public class MainMenuManager : MonoBehaviour {
 
     public string GetSelectedDescription() {
         return selectCards[selectedCard]?.GetComponent<MainMenuCardController>()?.itemDescription;
+    }
+
+    public void SetSelected(int selection) {
+        selectedCard = selection;
     }
 }

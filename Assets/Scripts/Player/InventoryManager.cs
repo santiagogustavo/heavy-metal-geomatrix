@@ -148,7 +148,7 @@ public class InventoryManager : MonoBehaviour {
 
     void UnlockShoot() {
         weaponBurstCount = 0;
-        if (InputManager.instance.rightTrigger == 1f) {
+        if (InputManager.instance.shootTap) {
             Shoot();
             return;
         }
@@ -201,14 +201,14 @@ public class InventoryManager : MonoBehaviour {
         if (
             leftHandSlotName != null
             && !hasPlayedShootAnimation
-            && InputManager.instance.rightTrigger == 1
+            && InputManager.instance.shootTap
         ) {
             Shoot();
         }
 
         if (
             rightHandSlotName != null
-            && InputManager.instance.fire2
+            && InputManager.instance.pickup
         ) {
             Sword();
         }

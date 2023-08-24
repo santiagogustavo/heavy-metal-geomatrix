@@ -53,7 +53,7 @@ MonoBehaviour:
   trail: {fileID: 8316471101310751037}
   levelHitSfx: {fileID: 6563053162874078878, guid: df7659b856f19dd4893c7d680f69366d, type: 3}
   playerHitSfx: {fileID: 6563053162874078878, guid: 00e121ee9b7702b4ebc2f4b91f72adc6, type: 3}
-  damageApplied: 10
+  damageApplied: 20
   isPlaying: 0
 --- !u!54 &5305827140256849937
 Rigidbody:

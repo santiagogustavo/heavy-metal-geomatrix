@@ -2884,6 +2884,7 @@ MonoBehaviour:
   - {fileID: 3566425329087474134}
   - {fileID: 1473748227605947653}
   - {fileID: 356769573175012157}
+  - {fileID: 6343323191803801638}
 --- !u!4 &2136096617850255812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: deb1516bc7d35384cbbc00d55305fbb0, type: 3}

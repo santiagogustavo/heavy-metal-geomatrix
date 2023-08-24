@@ -48,9 +48,7 @@ public class PauseMenuManager : MonoBehaviour {
             } else {
                 GameManager.instance.UpdateGameState(GameState.Paused);
             }
-        }
-
-        if (InputManager.instance.jump) {
+        } else if (InputManager.instance.cancel) {
             if (isOptionsOpen) {
                 isOptionsOpen = false;
             } else {
@@ -62,13 +60,13 @@ public class PauseMenuManager : MonoBehaviour {
             return;
         }
 
-        if (InputManager.instance.fire1) {
+        if (InputManager.instance.select) {
             SelectCurrent();
         }
 
-        if (InputManager.instance.GetDownOneShot()) {
+        if (InputManager.instance.GetDownTap()) {
             SelectDown();
-        } else if (InputManager.instance.GetUpOneShot()) {
+        } else if (InputManager.instance.GetUpTap()) {
             SelectUp();
         }
     }

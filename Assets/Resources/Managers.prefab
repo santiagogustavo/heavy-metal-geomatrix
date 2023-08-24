@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7934099864246203008}
   - component: {fileID: 705584903040867074}
   - component: {fileID: 7989408772169103371}
+  - component: {fileID: 3450122505857928499}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3765323365584897935}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5935465017314915517
 MonoBehaviour:
@@ -61,8 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025eb4d9c0dfe0040b29ce681bf2dc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolume: 0
-  sfxVolume: 10
 --- !u!114 &5940323587049888971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,23 +74,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d90840456298fe49b4b4bb6653fbe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: {x: 0, y: 0}
+  look: {x: 0, y: 0}
   horizontal: 0
   vertical: 0
-  dPadX: 0
-  dPadY: 0
-  horizontalInUse: 0
-  verticalInUse: 0
-  dPadXInUse: 0
-  dPadYInUse: 0
   jump: 0
-  fire1: 0
-  fire2: 0
-  fire3: 0
-  fire4: 0
-  fire5: 0
+  pickup: 0
   pause: 0
-  leftTrigger: 0
-  rightTrigger: 0
+  dash: 0
+  aim: 0
+  shootTap: 0
+  shootHold: 0
+  moveTap: {x: 0, y: 0}
+  select: 0
+  cancel: 0
 --- !u!114 &7934099864246203008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +128,33 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
   absoluteMusicVolume: 0
   absoluteSfxVolume: 0
+--- !u!114 &3450122505857928499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765323365584897935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 4f18088530745c34aa5f9659cc4f88a8, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Core Actions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

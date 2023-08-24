@@ -42,9 +42,9 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void UpdateMovement() {
-        Vector3 direction = new Vector3(InputManager.instance.horizontal, 0f, InputManager.instance.vertical).normalized;
+        Vector3 direction = new Vector3(InputManager.instance.move.x, 0f, InputManager.instance.move.y).normalized;
 
-        bool isWalking = direction.magnitude >= 0.1f;   
+        bool isWalking = direction.magnitude >= 0.1f;
 
         if (isWalking) {
             animator.SetIsWalking(true);
@@ -79,7 +79,7 @@ public class ThirdPersonController : MonoBehaviour {
     }
 
     void UpdateDash() {
-        if (InputManager.instance.leftTrigger == 1f) {
+        if (InputManager.instance.dash) {
             if (currGroundedState && !animator.IsCurrentAnimation("Idle") && !isDashing) {
                 animator.ChangeAnimationState("Dash");
             }

@@ -27,7 +27,11 @@ public class SwordController : MonoBehaviour {
     public bool isPlaying = false;
     public bool canInflictDamage = false;
 
-    public int currentAnimation;
+    string owner;
+
+    public void SetOwner(string ownerName) {
+        owner = ownerName;
+    }
 
     public void SetTrailActive(bool active) {
         if (active) {
@@ -61,10 +65,11 @@ public class SwordController : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
-        if (!isPlaying || health <= 0) {
+        if (!isPlaying || health <= 0 || collision.gameObject.name == owner) {
             return;
         }
 
+        /* LEVEL GEOMETRY */
         if (collision.gameObject.layer == 3) {
             if (canInflictDamage) {
                 collision.gameObject.GetComponent<BreakableProp>()?.InflictDamage(damageApplied);
@@ -72,13 +77,16 @@ public class SwordController : MonoBehaviour {
             }
             InstantiateSparks(collision, true);
         }
-        if (collision.gameObject.layer == 6) {
+
+        /* CHARACTER */
+        if (collision.gameObject.layer == 12) {
             if (canInflictDamage) {
                 health -= damageApplied;
                 if (health < 0f) {
                     health = 0f;
                 }
                 canInflictDamage = false;
+                PlayerComboController.instance.ComboHit();
                 InstantiateImpact(collision);
             }
         }
@@ -88,6 +96,8 @@ public class SwordController : MonoBehaviour {
         if (!isPlaying) {
             return;
         }
+
+        /* LEVEL GEOMETRY */
         if (collision.gameObject.layer == 3) {
             InstantiateSparks(collision);
         }

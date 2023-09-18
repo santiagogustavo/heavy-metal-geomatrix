@@ -10,7 +10,7 @@ public class Options {
 public class SaveManager : MonoBehaviour {
     public static SaveManager instance;
 
-    public static Options options = new Options();
+    public Options options = new Options();
 
     void Awake() {
         if (!instance) {

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 8027373e8bf8805469c56a0e891ef8f5
+  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: e763bfa87539b9443924fbc27a6a5362
   - enabled: 1
@@ -29,4 +32,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pitch Dark Stadium.unity
     guid: 1952dc76850a86540bc2a3bb7d28b001
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 315a7c06f07991d4797dbed1cfb76cf1, type: 2}

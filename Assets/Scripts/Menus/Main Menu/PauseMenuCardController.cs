@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class PauseMenuCardController : MonoBehaviour {
+public class PauseMenuCardController : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler {
     Image image;
 
     void Awake() {
         image = GetComponent<Image>();
+    }
+
+    public void OnPointerEnter(PointerEventData pd) {
+        PauseMenuManager.instance.SelectOption(name);
+    }
+
+    public void OnPointerClick(PointerEventData pd) {
+        PauseMenuManager.instance.SelectCurrent();
     }
 
     void Update() {

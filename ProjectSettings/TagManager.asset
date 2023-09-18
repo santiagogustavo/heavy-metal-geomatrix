@@ -12,6 +12,9 @@ TagManager:
   - Player Name
   - Invisible Wall
   - Weapon
+  - Fist
+  - BGM
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -25,7 +28,7 @@ TagManager:
   - Particles
   - Weapon
   - Bullet
-  - 
+  - Character
   - 
   - 
   - 

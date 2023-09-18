@@ -55,6 +55,16 @@ public class PlayerAnimatorEventListener : MonoBehaviour {
         }
     }
 
+    public void AllowFistAttack() {
+        List<GameObject> fists = Finder.GetGameObjectsByTagName(transform, "Fist");
+        foreach (GameObject fist in fists) {
+            FistController fistController = fist.GetComponent<FistController>();
+            if (fistController) {
+                fistController.canInflictDamage = true;
+            }
+        }
+    }
+
     public void PlayRandomPickupSfx() {
         if (pickupSfx[lastPickup].isPlaying) {
             return;

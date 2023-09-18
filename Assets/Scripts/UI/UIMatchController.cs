@@ -14,6 +14,9 @@ public class UIMatchController : MonoBehaviour {
     GameObject FightText;
 
     [SerializeField]
+    Animator bgmText;
+
+    [SerializeField]
     AudioSource roundBase;
 
     [SerializeField]
@@ -53,7 +56,11 @@ public class UIMatchController : MonoBehaviour {
         RoundInvertBg.SetActive(true);
 
         roundBase.Play();
-        round1.PlayDelayed(0.75f);
+
+        yield return new WaitForSeconds(0.75f);
+
+        round1.Play();
+        bgmText.Play("CloseBGM");
 
         yield return new WaitForSeconds(fightStartTime);
 

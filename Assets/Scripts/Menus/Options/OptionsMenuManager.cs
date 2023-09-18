@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum OptionsMenuVolumeOption {
+    SoundUp,
+    SoundDown,
+    MusicUp,
+    MusicDown,
+}
+
 public class OptionsMenuManager : MonoBehaviour {
+    public static OptionsMenuManager instance;
+
     public RectTransform selectBG;
     public Animator selectBGAnimator;
     public RectTransform[] options;
 
     int selectedOption = 0;
+
+    void Awake() {
+        if (!instance) {
+            instance = this;
+        }
+    }
 
     void Update() {
         UpdateSelectPosition();
@@ -19,6 +34,25 @@ public class OptionsMenuManager : MonoBehaviour {
             PlaySelectAnimation();
         }
         LeftRightUpdate();
+    }
+
+    public void HandleVolumeEvent(OptionsMenuVolumeOption option) {
+        switch (option) {
+            case OptionsMenuVolumeOption.SoundUp:
+                SfxVolumeUp();
+                break;
+            case OptionsMenuVolumeOption.SoundDown:
+                SfxVolumeDown();
+                break;
+            case OptionsMenuVolumeOption.MusicUp:
+                MusicVolumeUp();
+                break;
+            case OptionsMenuVolumeOption.MusicDown:
+                MusicVolumeDown();
+                break;
+            default:
+                break;
+        }
     }
 
     void LeftRightUpdate() {
@@ -83,6 +117,18 @@ public class OptionsMenuManager : MonoBehaviour {
     void MusicVolumeUp() {
         if (SaveManager.instance.GetMusicVolume() < 10) {
             SaveManager.instance.SetMusicVolume(SaveManager.instance.GetMusicVolume() + 1);
+        }
+    }
+
+    public void SelectCard(string name) {
+        int index = 0;
+        foreach (RectTransform option in options) {
+            if (option.gameObject.name == name) {
+                selectedOption = index;
+                PlaySelectAnimation();
+                return;
+            }
+            index++;
         }
     }
 }

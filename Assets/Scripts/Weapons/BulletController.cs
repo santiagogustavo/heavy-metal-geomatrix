@@ -6,12 +6,13 @@ public class BulletController : MonoBehaviour {
     [SerializeField] GameObject playerHitEffect;
     [SerializeField] GameObject playerHitSfx;
     [SerializeField] float damageApplied;
+    [SerializeField] float speed = 50f;
 
-    float speed = 50f;
     Rigidbody rb;
     GameObject sparks;
     GameObject bulletHole;
     List<GameObject> hitSfxList;
+    Vector3 target;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -24,6 +25,10 @@ public class BulletController : MonoBehaviour {
         hitSfxList.Add(Resources.Load("Sounds/Weapons/Common/Bullet Hit 2") as GameObject);
         hitSfxList.Add(Resources.Load("Sounds/Weapons/Common/Bullet Hit 3") as GameObject);
         hitSfxList.Add(Resources.Load("Sounds/Weapons/Common/Bullet Hit 4") as GameObject);
+    }
+
+    public void SetTarget(Vector3 at) {
+        target = at;
     }
 
     void InstantiateHitPlayer(Collision collision) {
@@ -47,10 +52,16 @@ public class BulletController : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
+
+        /* LEVEL GEOMETRY */
         if (collision.gameObject.layer == 3 && collision.gameObject.tag != "Invisible Wall") {
             collision.gameObject.GetComponent<BreakableProp>()?.InflictDamage(damageApplied);
             InstantiateHitLevelGeometry(collision);
-        } else if (collision.gameObject.layer == 6) {
+        }
+
+        /* CHARACTER */
+        if (collision.gameObject.layer == 12) {
+            PlayerComboController.instance.ComboHit();
             InstantiateHitPlayer(collision);
         }
         Destroy(gameObject);

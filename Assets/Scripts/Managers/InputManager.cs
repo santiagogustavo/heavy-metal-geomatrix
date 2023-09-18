@@ -24,6 +24,7 @@ public class InputManager : MonoBehaviour {
     public Vector2 moveTap;
     public bool select;
     public bool cancel;
+    public bool mouseSelect;
 
     void Awake() {
         if (!instance) {
@@ -56,6 +57,7 @@ public class InputManager : MonoBehaviour {
         moveTap = new Vector2();
         select = false;
         cancel = false;
+        mouseSelect = false;
     }
 
     private void OnJump(InputValue value) {
@@ -106,5 +108,9 @@ public class InputManager : MonoBehaviour {
 
     private void OnCancel() {
         cancel = true;
+    }
+
+    private void OnMouseSelect() {
+        mouseSelect = true;
     }
 }

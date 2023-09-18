@@ -87,7 +87,7 @@ public class PauseMenuManager : MonoBehaviour {
         }
     }
 
-    void SelectCurrent() {
+    public void SelectCurrent() {
         switch (selectedOption) {
             case 0:
                 ResumeGame();
@@ -144,5 +144,16 @@ public class PauseMenuManager : MonoBehaviour {
 
     public bool IsOptionSelected(string name) {
         return options[selectedOption].name == name;
+    }
+
+    public void SelectOption(string name) {
+        int index = 0;
+        foreach (GameObject option in options) {
+            if (option.name == name) {
+                selectedOption = index;
+                return;
+            }
+            index++;
+        }
     }
 }

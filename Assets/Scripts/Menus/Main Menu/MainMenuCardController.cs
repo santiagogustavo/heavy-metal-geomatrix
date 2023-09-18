@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MainMenuCardController : MonoBehaviour, IPointerEnterHandler {
-    [SerializeField] public int index;
+public class MainMenuCardController : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler {
     [SerializeField] public string itemName;
     [SerializeField] public string itemDescription;
 
@@ -34,8 +33,12 @@ public class MainMenuCardController : MonoBehaviour, IPointerEnterHandler {
         hidePosition = new Vector3(originalPosition.x - 25f, originalPosition.y, originalPosition.z);
     }
 
-    public void OnPointerEnter(PointerEventData eventData) {
-        Debug.Log("Mouse enter");
+    public void OnPointerEnter(PointerEventData pd) {
+        MainMenuManager.instance.SelectCard(gameObject.name);
+    }
+
+    public void OnPointerClick(PointerEventData pd) {
+        MainMenuManager.instance.SelectCurrent();
     }
 
     void Update() {

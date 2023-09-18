@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour {
-    ParticleSystem particles;
-    AudioSource sfx;
+    [SerializeField]
+    ParticleSystem shootParticles;
+
+    [SerializeField]
+    AudioSource shootSfx;
+
+    [SerializeField]
+    Animator animator;
 
     [SerializeField]
     public int bullets;
-
-    [SerializeField]
-    public int bulletCount;
+    int bulletCount = -1;
 
     [SerializeField]
     public float fireRate;
@@ -27,24 +31,35 @@ public class WeaponController : MonoBehaviour {
     [SerializeField]
     GameObject bullet;
 
+    public bool isShooting;
+
     void Start() {
         bulletCount = bullets;
-        particles = GetComponentInChildren<ParticleSystem>();
-        sfx = GetComponentInChildren<AudioSource>();
+    }
+
+    void Update() {
+        animator.SetBool("IsShooting", isShooting);
+        isShooting = false;
+    }
+
+    public int GetBulletCount() {
+        return bulletCount >= 0 ? bulletCount : bullets;
     }
 
     public void InstantiateBullet(Vector3 at) {
-        Vector3 aimDirection = (at - bulletHole.position).normalized;
-        Instantiate(bullet, bulletHole.transform.position, Quaternion.LookRotation(aimDirection, Vector3.up));
+        Vector3 aimDirection = at - bulletHole.position;
+        GameObject bulletInstance = Instantiate(bullet, bulletHole.position, Quaternion.LookRotation(aimDirection, Vector3.up));
+        bulletInstance.GetComponent<BulletController>().SetTarget(at);
     }
 
     public void Shoot(Vector3 at) {
         if (bulletCount == 0) {
             return;
         }
+        isShooting = true;
         bulletCount--;
-        particles.Play();
-        sfx.Play();
+        shootParticles.Play();
+        shootSfx.Play();
         InstantiateBullet(at);
     }
 }

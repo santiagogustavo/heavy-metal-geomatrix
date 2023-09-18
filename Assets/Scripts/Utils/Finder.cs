@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public static class Finder {
     public static GameObject GetGameObjectByName(Transform transform, string name) {
-        GameObject found = GameObject.Find(name);
-        return found.transform.IsChildOf(transform) ? found : null;
+        return transform.GetComponentsInChildren<Transform>().FirstOrDefault(c => c.gameObject.name == name)?.gameObject;
     }
 
     public static List<GameObject> GetGameObjectsByTagName(Transform transform, string tag) {

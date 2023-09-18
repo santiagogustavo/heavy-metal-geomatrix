@@ -12,18 +12,26 @@ public class InventoryManagerV2 : MonoBehaviour {
     Transform pickupSlot;
     GameObject pickupInstance;
 
+    List<GameObject> fists;
+
     bool isDashing;
     bool isDropping;
     bool isShooting;
+    bool isBursting;
     bool isAttacking;
     bool isAttackCombo;
     bool isDoubleJumping;
+
+    int currentAnimation;
+    bool lockShootingState;
+    int burstCount;
 
     void Start() {
         playerController = GetComponent<PlayerMovementController>();
         playerAnimator = playerController.GetCharacterAnimator();
         bodySlot = Finder.GetGameObjectByName(transform, "Body Slot").transform;
         pickupSlot = Finder.GetGameObjectByName(transform, "Pickup Slot").transform;
+        fists = Finder.GetGameObjectsByTagName(transform, "Fist");
     }
 
     void ClearAnimation() {
@@ -36,19 +44,54 @@ public class InventoryManagerV2 : MonoBehaviour {
         }
         WeaponController weapon = pickupInstance?.GetComponent<WeaponController>();
         if (weapon) {
-            isDropping = weapon.bulletCount <= 0;
+            isDropping = weapon.GetBulletCount() <= 0;
+            return;
         }
 
         SwordController sword = pickupInstance?.GetComponent<SwordController>();
         if (sword) {
             isDropping = sword.isBroken;
+            return;
+        }
+    }
+
+    void UnlockShootingState() {
+        lockShootingState = false;
+    }
+
+    void ComputeBurst() {
+        if (burstCount <= 0 || !pickupInstance) {
+            return;
+        }
+
+        WeaponController weapon = pickupInstance?.GetComponent<WeaponController>();
+        if (weapon) {
+            isBursting = true;
+            burstCount--;
+            Invoke("ComputeBurst", weapon.burstRate);
+        }
+    }
+
+    void ControlShootingInputs() {
+        if (!pickupInstance) {
+            return;
+        }
+        WeaponController weapon = pickupInstance?.GetComponent<WeaponController>();
+        if (isShooting && weapon) {
+            lockShootingState = true;
+            burstCount = weapon.burst;
+            Invoke("UnlockShootingState", weapon.fireRate);
+            Invoke("ComputeBurst", weapon.burstRate);
         }
     }
 
     void ComputeInputs() {
-        isShooting = InputManager.instance.shootHold;
+        if (GameManager.instance.IsGamePaused() || !GameManager.instance.MatchWasStarted()) {
+            return;
+        }
+        isShooting = InputManager.instance.shootHold && !lockShootingState;
         isAttacking = InputManager.instance.shootTap;
-        if (IsSwordAttacking() && !IsLastComboAttack() && InputManager.instance.shootTap) {
+        if (IsAttacking() && !IsLastComboAttack() && InputManager.instance.shootTap) {
             isAttackCombo = true;
         }
         isDashing = playerController.GetIsDashing();
@@ -57,6 +100,7 @@ public class InventoryManagerV2 : MonoBehaviour {
 
     void PassVariablesToPlayer() {
         playerController.SetIsShooting(isShooting);
+        playerController.SetIsBursting(isBursting);
         playerController.SetIsAttacking(isAttacking || isAttackCombo);
         playerController.SetIsDropping(isDropping);
     }
@@ -78,26 +122,21 @@ public class InventoryManagerV2 : MonoBehaviour {
     }
 
     void PickUpShoot() {
-        if (!isShooting || !pickupInstance) {
-            return;
-        }
-        isShooting = false;
-    }
-
-    void PassAnimationInfoToSword() {
         if (!pickupInstance) {
             return;
         }
+        isShooting = false;
+        isBursting = false;
+    }
 
-        SwordController sword = pickupInstance?.GetComponent<SwordController>();
-        if (sword) {
-            AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
+    void UpdateComboBasedOnAnimation() {
+        AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
 
-            if (sword.currentAnimation != animationState.fullPathHash) {
-                isAttackCombo = false;
-            }
-            sword.currentAnimation = animationState.fullPathHash;
+        if (currentAnimation != animationState.fullPathHash) {
+            isAttackCombo = false;
         }
+
+        currentAnimation = animationState.fullPathHash;
     }
 
     bool CanPickUp() {
@@ -109,19 +148,37 @@ public class InventoryManagerV2 : MonoBehaviour {
             || animationState.IsName("Look - Empty");
     }
 
-    bool IsSwordAttacking() {
+    bool IsAttacking() {
         AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
-        return animationState.IsName("Attack - Melee Light 1")
+        return animationState.IsName("Attack - Punch 1")
+            || animationState.IsName("Attack - Punch 2")
+            || animationState.IsName("Attack - Punch 3")
+            || animationState.IsName("Attack - Punch 4")
+            || animationState.IsName("Attack - Melee Light 1")
             || animationState.IsName("Attack - Melee Light 2")
             || animationState.IsName("Attack - Melee Light 3")
             || animationState.IsName("Attack - Melee Light 4")
-            || animationState.IsName("Attack - Melee Heavy 1");
+            || animationState.IsName("Attack - Melee Heavy 1")
+            || animationState.IsName("Attack - Melee Heavy 2")
+            || animationState.IsName("Attack - Melee Heavy 3")
+            || animationState.IsName("Attack - Melee Heavy 4");
     }
 
     bool IsLastComboAttack() {
         AnimatorStateInfo animationState = playerAnimator.GetCurrentAnimatorStateInfo(1);
-        return animationState.IsName("Attack - Melee Light 4")
-            || animationState.IsName("Attack - Melee Heavy 1");
+        return animationState.IsName("Attack - Punch 4")
+            || animationState.IsName("Attack - Melee Light 4")
+            || animationState.IsName("Attack - Melee Heavy 4");
+    }
+
+    void ControlFists() {
+        if (pickupInstance) {
+            return;
+        }
+        foreach (GameObject fist in fists) {
+            FistController fistController = fist.GetComponent<FistController>();
+            fistController?.SetTrailActive(IsAttacking());
+        }
     }
 
     void PickUpSword() {
@@ -129,7 +186,8 @@ public class InventoryManagerV2 : MonoBehaviour {
             return;
         }
         SwordController sword = pickupInstance.GetComponent<SwordController>();
-        sword?.SetTrailActive(IsSwordAttacking());
+        sword?.SetOwner(name);
+        sword?.SetTrailActive(IsAttacking());
     }
 
     void PickUpDrop() {
@@ -164,6 +222,7 @@ public class InventoryManagerV2 : MonoBehaviour {
         if (!CanPickUp() && playAnimation) {
             return false;
         }
+
         if (playAnimation) {
             playerController.SetIsPickingUp(true);
             Invoke("ClearAnimation", 0.05f);
@@ -184,8 +243,10 @@ public class InventoryManagerV2 : MonoBehaviour {
     void Update() {
         ComputeInputs();
         ComputeDrop();
+        ControlShootingInputs();
         PassVariablesToPlayer();
-        PassAnimationInfoToSword();
+        UpdateComboBasedOnAnimation();
+        ControlFists();
         PickUpShoot();
         PickUpSword();
         PickUpDrop();

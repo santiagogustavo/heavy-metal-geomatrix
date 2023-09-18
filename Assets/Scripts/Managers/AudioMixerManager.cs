@@ -28,6 +28,10 @@ public class AudioMixerManager : MonoBehaviour {
     }
 
     void Update() {
+        if (GameManager.instance.IsGamePaused()) {
+            SetSfxVolume(minAudioLevel);
+            return;
+        }
         int musicVolume = SaveManager.instance.GetMusicVolume();
         int sfxVolume = SaveManager.instance.GetSfxVolume();
         int relativeMusicVolume = 10 - SaveManager.instance.GetMusicVolume();

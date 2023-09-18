@@ -5117,13 +5117,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb776e63c5a1974ab136f63e224af79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootParticles: {fileID: 2059534639313224470}
+  shootSfx: {fileID: 8463530564722711984}
+  animator: {fileID: 2968144361696948498}
   bullets: 8
-  bulletCount: 8
-  fireRate: 0.4
-  burst: 1
+  fireRate: 0.35
+  burst: 0
   burstRate: 0
   bulletHole: {fileID: 3152777299253551559}
   bullet: {fileID: 3668586822941491444, guid: cbd97d189ece5494081c678ddf50915c, type: 3}
+  isShooting: 0
 --- !u!1 &4833232673575492836
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,7 +5232,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7589195293710711185, guid: cb2c70cc5b46a8745b32c323fae48ead, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 14c0ca5cb89d0f34c805dc355ae7ffb5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 16afdb9dff5f3be4ca8894898c57cc12, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.64
@@ -5324,6 +5327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8545449496552038008}
+  - component: {fileID: 2968144361696948498}
   m_Layer: 10
   m_Name: Hand Gun
   m_TagString: Untagged
@@ -5349,6 +5353,27 @@ Transform:
   - {fileID: 5372668691924134611}
   m_Father: {fileID: 2959013879090070882}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!95 &2968144361696948498
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9069222319162262722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6efda76ceaf0eba48827b722c7bf7fb1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7735886918659658702
 PrefabInstance:
   m_ObjectHideFlags: 0

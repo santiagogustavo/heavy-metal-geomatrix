@@ -98,4 +98,16 @@ public class SelectStageManager : MonoBehaviour {
     public bool IsSelected() {
         return selected;
     }
+
+    public void SelectCard(string name) {
+        cursorSfx.Play();
+        int index = 0;
+        foreach (GameObject card in selectCards) {
+            if (card.name == name) {
+                selectedCard = index;
+                return;
+            }
+            index++;
+        }
+    }
 }

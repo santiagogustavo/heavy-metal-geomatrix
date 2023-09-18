@@ -51,6 +51,7 @@ public class PickupController : MonoBehaviour {
             );
         }
     }
+
     void LerpCollisionMaterial() {
         lerp = Mathf.PingPong(Time.time, duration) / duration;
         SetCollisionMaterial(transform);

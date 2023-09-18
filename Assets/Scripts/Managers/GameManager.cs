@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     public static GameState state;
     public static event Action<GameState> OnGameStateChanged;
 
+    GameObject bgm;
     GameObject currentPlayerInstance;
     static LevelMeta level;
     static PlayerMeta player1;
@@ -102,5 +103,13 @@ public class GameManager : MonoBehaviour {
 
     public bool MatchWasStarted() {
         return matchWasStarted;
+    }
+
+    public void SetBgm(GameObject currentBgm) {
+        bgm = currentBgm;
+    }
+
+    public GameObject GetBgm() {
+        return bgm;
     }
 }

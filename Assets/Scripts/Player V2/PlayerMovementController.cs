@@ -28,6 +28,7 @@ public class PlayerMovementController : MonoBehaviour {
     EquipType equip = 0;
     bool isAiming;
     bool isShooting;
+    bool isBursting;
     bool isAttacking;
     bool isWalking;
     bool isJumping;
@@ -109,6 +110,7 @@ public class PlayerMovementController : MonoBehaviour {
         characterAnimator.SetBool("IsAiming", isAiming);
         characterAnimator.SetBool("IsWalking", isWalking);
         characterAnimator.SetBool("IsShooting", isShooting);
+        characterAnimator.SetBool("IsBursting", isBursting);
         characterAnimator.SetBool("IsAttacking", isAttacking);
         characterAnimator.SetBool("IsJumping", isJumping);
         characterAnimator.SetBool("IsDashing", isDashing);
@@ -187,6 +189,10 @@ public class PlayerMovementController : MonoBehaviour {
 
     public void SetIsShooting(bool shooting) {
         isShooting = shooting;
+    }
+
+    public void SetIsBursting(bool bursting) {
+        isBursting = bursting;
     }
 
     public void SetIsAttacking(bool attacking) {

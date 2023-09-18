@@ -27,7 +27,7 @@ public class UIAmmoController : MonoBehaviour {
             SwordController sword = pickup?.GetComponent<SwordController>();
 
             if (weapon) {
-                text.text = weapon.bulletCount + "/" + weapon.bullets;
+                text.text = weapon.GetBulletCount() + "/" + weapon.bullets;
             } else if (sword) {
                 text.text = sword.health + "%";
             } else {
